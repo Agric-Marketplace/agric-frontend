@@ -1,5 +1,5 @@
 import React from "react";
-import herobg from "../../assets/images/herobg1.mp4";
+import herobg from "../../assets/images/herobg2.mp4";
 
 const Landing = () => {
   return (
@@ -16,7 +16,7 @@ const Landing = () => {
         </video>
 
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-40"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
         {/* Content */}
         <div className="relative z-20 flex items-center justify-center h-full w-full px-4">
@@ -24,7 +24,7 @@ const Landing = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-200">
+            <p className="text-base sm:text-lg md:text-xl text-gray-200 font-semibold">
               FarmAssist is your one-stop agri-tech marketplace where farmers
               sell fresh produce straight to consumers—no middlemen, just trust.
               Safe payments, real-time listings, and farm-to-fork convenience.

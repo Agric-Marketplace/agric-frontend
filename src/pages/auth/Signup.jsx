@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
-import hero from "../../assets/images/herobg1.mp4";
+import hero from "../../assets/images/herobg2.mp4";
 
 const Signup = () => {
   return (

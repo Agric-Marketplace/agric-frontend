@@ -1,5 +1,5 @@
 import React from "react";
-import hero from "../../assets/images/herobg1.mp4";
+import hero from "../../assets/images/herobg2.mp4";
 import { Link } from "react-router";
 
 const Login = () => {
