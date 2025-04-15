@@ -5,7 +5,7 @@ import p6 from "../../assets/images/p6.png";
 const Landing = () => {
   return (
     <div>
-      <div className="h-screen relative">
+      <div className="relative h-screen w-full overflow-hidden">
         {/* Background Video */}
         <video
           autoPlay
@@ -18,35 +18,36 @@ const Landing = () => {
         </video>
 
         {/* Overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
         {/* Content */}
-        <div className="relative z-20 flex items-center justify-center h-full w-full px-4">
-          <div className="text-white p-4 sm:p-6 md:p-8 w-full max-w-3xl text-center space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+        <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
+          <div className="text-white max-w-4xl text-center space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
-            <p className="text-[22px] sm:text-lg md:text-xl text-gray-200">
+            <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
               FarmAssist is your one-stop agri-tech marketplace where farmers
               sell fresh produce straight to consumers—no middlemen, just trust.
               Safe payments, real-time listings, and farm-to-fork convenience.
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5 justify-center items-center">
-              <button className="w-full sm:w-auto px-8 py-4 text-base sm:text-lg border border-green-500 bg-transparent rounded-lg font-semibold transition duration-300">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-500 bg-transparent rounded-lg font-semibold hover:bg-green-500 hover:text-white transition duration-300">
                 Post a Product
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold transition duration-300">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
                 Browse Produce
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold transition duration-300">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
                 View Auctions
               </button>
             </div>
           </div>
         </div>
       </div>
+
       <section className="w-full bg-white py-12">
         <div className="text-center px-4 md:px-0">
           <h2 className="font-bold text-3xl md:text-4xl">Popular Categories</h2>
