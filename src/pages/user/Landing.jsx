@@ -25,7 +25,7 @@ const Landing = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-200 font-semibold">
+            <p className="text-[22px] sm:text-lg md:text-xl text-gray-200">
               FarmAssist is your one-stop agri-tech marketplace where farmers
               sell fresh produce straight to consumers—no middlemen, just trust.
               Safe payments, real-time listings, and farm-to-fork convenience.
