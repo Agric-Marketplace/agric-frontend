@@ -47,68 +47,66 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <section className="w-[100%] ">
-        <div className="h-[100vh] bg-white p-[30px]  ">
-          <div className="flex flex-col justify-center items-center p-[30px] ">
-            <h2 className="font-bold text-4xl">Popular Categories</h2>
-            <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
-          </div>
-          <div className="max-w-6xl mx-auto p-[50px]">
-            <div className="grid grid-cols-3 gap-4">
-              <div className=" relative row-span-2">
-                <img
-                  src={p6}
-                  alt="night life"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold">Fresh Vegetables</h3>
-                  {/* <p className="text-sm">210 Listings</p> */}
-                </div>
+      <section className="w-full bg-white py-12">
+        <div className="text-center px-4 md:px-0">
+          <h2 className="font-bold text-3xl md:text-4xl">Popular Categories</h2>
+          <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Fresh Vegetables"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Fresh Vegetables</h3>
               </div>
-              <div className="relative">
-                <img
-                  src={p6}
-                  alt="Restaurant"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold">Fruits</h3>
-                  {/* <p className="text-sm">385 Listings</p> */}
-                </div>
+            </div>
+
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Fruits"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Fruits</h3>
               </div>
-              <div className="relative">
-                <img
-                  src={p6}
-                  alt="Hotels"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold">Grains </h3>
-                  {/* <p className="text-sm">577 Listings</p> */}
-                </div>
+            </div>
+
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Grains"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Grains</h3>
               </div>
-              <div className="relative">
-                <img
-                  src={p6}
-                  alt="Outdoors"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold">Cereals</h3>
-                  {/* <p className="text-sm">114 Listings</p> */}
-                </div>
+            </div>
+
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Cereals"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Cereals</h3>
               </div>
-              <div className="relative">
-                <img
-                  src={p6}
-                  alt="Arts"
-                  className="h-full w-full object-cover"
-                />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h3 className="text-lg font-semibold">Diary & Egg</h3>
-                  {/* <p className="text-sm">79 Listings</p> */}
-                </div>
+            </div>
+
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Dairy & Egg"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Dairy & Egg</h3>
               </div>
             </div>
           </div>
