@@ -1,5 +1,6 @@
 import React from "react";
 import herobg from "../../assets/images/herobg2.mp4";
+import p6 from "../../assets/images/p6.png";
 
 const Landing = () => {
   return (
@@ -46,6 +47,73 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <section className="w-[100%] ">
+        <div className="h-[100vh] bg-white p-[30px]  ">
+          <div className="flex flex-col justify-center items-center p-[30px] ">
+            <h2 className="font-bold text-4xl">Popular Categories</h2>
+            <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
+          </div>
+          <div className="max-w-6xl mx-auto p-[50px]">
+            <div className="grid grid-cols-3 gap-4">
+              <div className=" relative row-span-2">
+                <img
+                  src={p6}
+                  alt="night life"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-lg font-semibold">Fresh Vegetables</h3>
+                  {/* <p className="text-sm">210 Listings</p> */}
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={p6}
+                  alt="Restaurant"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-lg font-semibold">Fruits</h3>
+                  {/* <p className="text-sm">385 Listings</p> */}
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={p6}
+                  alt="Hotels"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-lg font-semibold">Grains </h3>
+                  {/* <p className="text-sm">577 Listings</p> */}
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={p6}
+                  alt="Outdoors"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-lg font-semibold">Cereals</h3>
+                  {/* <p className="text-sm">114 Listings</p> */}
+                </div>
+              </div>
+              <div className="relative">
+                <img
+                  src={p6}
+                  alt="Arts"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="text-lg font-semibold">Diary & Egg</h3>
+                  {/* <p className="text-sm">79 Listings</p> */}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
