@@ -94,7 +94,7 @@ const Landing = () => {
           <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-25 justify-items-center">
           <ProductCard />
           <ProductCard />
           <ProductCard />
