@@ -1,6 +1,9 @@
 import React from "react";
 import herobg from "../../assets/images/herobg2.mp4";
 import p6 from "../../assets/images/p6.png";
+import banana from "../../assets/images/banana.jpg";
+import plantain from "../../assets/images/plantain.png";
+import ProductCard from "../../components/ProductCard";
 
 const Landing = () => {
   return (
@@ -110,7 +113,42 @@ const Landing = () => {
                 <h3 className="text-lg font-semibold">Dairy & Egg</h3>
               </div>
             </div>
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={p6}
+                alt="Dairy & Egg"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+                <h3 className="text-lg font-semibold">Herbal Products</h3>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+      {/* <section>
+        <div className="text-center px-4 md:px-0">
+          <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
+          <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
+        </div>
+        <div>
+          <img src="" alt="" />
+        </div>
+      </section> */}
+
+      <section className="w-full bg-[#fcfcf7] py-12">
+        {/* Section Title */}
+        <div className="text-center px-4 md:px-0 mb-10">
+          <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
+          <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
+        </div>
+
+        {/* Responsive Grid for Cards */}
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-25 justify-items-center">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
         </div>
       </section>
     </div>
