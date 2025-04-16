@@ -4,6 +4,12 @@ import p6 from "../../assets/images/p6.png";
 import banana from "../../assets/images/banana.jpg";
 import plantain from "../../assets/images/plantain.png";
 import ProductCard from "../../components/ProductCard";
+import fruits from "../../assets/images/fruits.png";
+import p1 from "../../assets/images/p1.png";
+import p2 from "../../assets/images/p2.png";
+import p3 from "../../assets/images/p3.png";
+import p4 from "../../assets/images/p4.png";
+import p5 from "../../assets/images/p5.png";
 
 const Landing = () => {
   return (
@@ -59,82 +65,80 @@ const Landing = () => {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={p1}
                 alt="Fresh Vegetables"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Fresh Vegetables</h3>
               </div>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={fruits}
                 alt="Fruits"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Fruits</h3>
               </div>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={p2}
                 alt="Grains"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Grains</h3>
               </div>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={p3}
                 alt="Cereals"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Cereals</h3>
               </div>
             </div>
 
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={p4}
                 alt="Dairy & Egg"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Dairy & Egg</h3>
               </div>
             </div>
-            <div className="relative rounded-lg overflow-hidden">
+
+            <div className="relative row-span-2 sm:row-span-1 rounded-lg overflow-hidden group ">
               <img
-                src={p6}
+                src={p5}
                 alt="Dairy & Egg"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 left-4 text-white drop-shadow-md">
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-4 left-4 text-white drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold">Herbal Products</h3>
               </div>
             </div>
           </div>
         </div>
       </section>
-      {/* <section>
-        <div className="text-center px-4 md:px-0">
-          <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
-          <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
-        </div>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </section> */}
 
       <section className="w-full bg-[#fcfcf7] py-12">
         {/* Section Title */}
