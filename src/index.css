@@ -10,3 +10,15 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.text-gradient {
+  background-image: linear-gradient(
+    to right,
+    #4ade80,
+    #fde047,
+    #16a34a
+  ); /* green-yellow-green */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent; /* For Safari */
+}
