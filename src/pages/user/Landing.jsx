@@ -10,6 +10,7 @@ import p2 from "../../assets/images/p2.png";
 import p3 from "../../assets/images/p3.png";
 import p4 from "../../assets/images/p4.png";
 import p5 from "../../assets/images/p5.png";
+import thumbnail from "../../assets/images/thumbnail.png";
 
 const Landing = () => {
   return (
@@ -22,13 +23,14 @@ const Landing = () => {
           muted
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none"
+          poster={thumbnail}
         >
           <source src={herobg} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none"></div>
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight bg-gradient-to-r from-green-400 via-yellow-300 to-green-600 text-transparent bg-clip-text shadow-lg">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
@@ -36,14 +38,80 @@ const Landing = () => {
               sell fresh produce straight to consumers—no middlemen, just trust.
               Safe payments, real-time listings, and farm-to-fork convenience.
             </p>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
+            {/* <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-500 bg-transparent rounded-lg font-semibold hover:bg-green-500 hover:text-white transition duration-300">
                 Post a Product
               </button>
+
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
                 Browse Produce
               </button>
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
+                View Auctions
+              </button>
+            </div> */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
+              {/* Post a Product */}
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </span>
+                Post a Product
+              </button>
+
+              {/* Browse Produce */}
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-5 h-5 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M3 7h18M3 12h18M3 17h18"
+                    />
+                  </svg>
+                </span>
+                Browse Produce
+              </button>
+
+              {/* View Auctions */}
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
+                  {/* Updated SVG for Auctions */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 1v22m4-5l5 5-5 5m0-10l5-5-5-5"
+                    />
+                  </svg>
+                </span>
                 View Auctions
               </button>
             </div>

@@ -1,6 +1,7 @@
 import React from "react";
-import hero from "../../assets/images/herobg2.mp4";
+import rain from "../../assets/images/formbg.mp4";
 import { Link } from "react-router";
+import formthumb from "../../assets/images/formthumb.png";
 
 const Login = () => {
   return (
@@ -11,8 +12,9 @@ const Login = () => {
         muted
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover"
+        poster={formthumb}
       >
-        <source src={hero} type="video/mp4" />
+        <source src={rain} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -20,6 +22,12 @@ const Login = () => {
 
       <div className="relative flex flex-col items-center justify-center h-full text-white ">
         <div className="bg-black/50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-md items-center relative ">
+          <Link
+            className="font-bold text-2xl flex mb-3 justify-center items-center"
+            to="/"
+          >
+            Farm <span className="text-green-500">Assist</span>
+          </Link>
           <h1 className="text-2xl font-semibold text-center mb-6">Log In</h1>
           <form className="space-y-4">
             <div>
