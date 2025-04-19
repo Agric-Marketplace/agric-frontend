@@ -30,7 +30,7 @@ const Landing = () => {
         <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none"></div>
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight bg-gradient-to-r from-green-400 via-yellow-300 to-green-600 text-transparent bg-clip-text shadow-lg">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight bg-gradient-to-r from-green-400 via-yellow-300 to-green-600 text-white bg-clip-text text-transparent shadow-lg">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
