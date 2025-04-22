@@ -114,7 +114,7 @@ const AuctionSection = () => {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-48 object-cover rounded-md mb-3"
+                    className="w-full h-55 object-cover rounded-md mb-3"
                   />
                   <h4 className="text-lg font-bold">{item.name}</h4>
                   <p className="text-sm text-gray-500 mb-2">
