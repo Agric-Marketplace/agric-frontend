@@ -11,6 +11,8 @@ import p3 from "../../assets/images/p3.png";
 import p4 from "../../assets/images/p4.png";
 import p5 from "../../assets/images/p5.png";
 import thumbnail from "../../assets/images/thumbnail.png";
+import LiveAuctions from "../../components/LiveAuctions";
+import AuctionSection from "../../components/AuctionSection";
 
 const Landing = () => {
   return (
@@ -168,6 +170,13 @@ const Landing = () => {
           <ProductCard />
           <ProductCard />
         </div>
+      </section>
+
+      {/* <section>
+        <LiveAuctions />
+      </section> */}
+      <section>
+        <AuctionSection />
       </section>
     </div>
   );
