@@ -158,13 +158,13 @@ const Landing = () => {
       </section>
 
       {/* Trending Products */}
-      <section className="w-full h-screen bg-[#f0f8ff] py-12">
+      <section className="w-full bg-[#f0f8ff] py-12 sm:min-h-screen">
         <div className="text-center px-4 md:px-0 mb-10">
           <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
           <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-25 justify-items-center">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
           <ProductCard
             image={banana}
             title="Fresh Banana"
