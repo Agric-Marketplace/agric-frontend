@@ -1,12 +1,12 @@
 import React from "react";
 import plantain from "../assets/images/plantain.png";
 
-const ProductCard = () => {
+const ProductCard = ({ image, title, description, price }) => {
   return (
     <div className="relative w-80 h-[460px] rounded-3xl overflow-hidden shadow-md bg-white ">
       {/* Background Image */}
       <img
-        src={plantain}
+        src={image}
         alt=""
         className="w-full h-full object-cover absolute inset-0 z-0 pointer-events-none"
       />
@@ -28,9 +28,9 @@ const ProductCard = () => {
           className="bg-black/60 backdrop-blur-md rounded-2xl p-4 text-white pointer-events: none;
 z-index: 0;"
         >
-          <h3 className="text-lg font-semibold">Plantain</h3>
-          <p className="text-sm text-gray-300">Fresh Plantain</p>
-          <p className="mt-1 font-bold">$50</p>
+          <h3 className="text-lg font-semibold">{title}</h3>
+          <p className="text-sm text-gray-300">{description}</p>
+          <p className="mt-1 font-bold">${price}</p>
 
           <div className="flex gap-2 mt-4">
             <button className="flex-1 bg-white text-black font-medium py-2 rounded-xl hover:bg-gray-200 transition">

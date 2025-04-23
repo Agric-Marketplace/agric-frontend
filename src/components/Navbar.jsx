@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="hidden md:flex gap-x-10">
         <Link to="/">Home</Link>
         <span>Products</span>
-        <Link to="/doctors">Farmers</Link>
+        <Link to="/">Farmers</Link>
         <span>Contact</span>
       </div>
 
