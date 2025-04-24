@@ -1,15 +1,79 @@
 import React from "react";
+import carrot from "../../assets/images/carrots.png";
+import fruits from "../../assets/images/fruits.png";
+import rice from "../../assets/images/rice.png";
+import tomatoes from "../../assets/images/tomatoes.png";
+import banana from "../../assets/images/banana.jpg";
+import beans from "../../assets/images/beans.png";
+import spinach from "../../assets/images/spinach.png";
+import lemon from "../../assets/images/lemon.png";
+import ginger from "../../assets/images/ginger.png";
 
 const Adverts = () => {
   const products = [
     {
       id: 1,
-      title: "Product 1",
-      price: "$9.99",
+      title: "Fresh Carrots",
+      price: "$2.99",
       category: "Vegetables",
-      image: "https://via.placeholder.com/150",
+      image: carrot,
     },
-    // Add more product objects as needed
+    {
+      id: 2,
+      title: "Organic Apples",
+      price: "$4.50",
+      category: "Fruits",
+      image: fruits,
+    },
+    {
+      id: 3,
+      title: "Basmati Rice",
+      price: "$6.99",
+      category: "Grains",
+      image: rice,
+    },
+    {
+      id: 4,
+      title: "Tomatoes",
+      price: "$3.25",
+      category: "Vegetables",
+      image: tomatoes,
+    },
+    {
+      id: 5,
+      title: "Bananas",
+      price: "$1.99",
+      category: "Fruits",
+      image: banana,
+    },
+    {
+      id: 6,
+      title: "Dry Beans",
+      price: "$5.00",
+      category: "Legumes",
+      image: beans,
+    },
+    {
+      id: 7,
+      title: "Spinach",
+      price: "$2.25",
+      category: "Vegetables",
+      image: spinach,
+    },
+    {
+      id: 8,
+      title: "Lemons",
+      price: "$3.00",
+      category: "Fruits",
+      image: lemon,
+    },
+    {
+      id: 9,
+      title: "Fresh Ginger",
+      price: "$4.75",
+      category: "Herbs",
+      image: ginger,
+    },
   ];
 
   return (
@@ -17,9 +81,9 @@ const Adverts = () => {
       {/* ===== Hero Section ===== */}
       <div className="pt-28">
         <div className="relative h-[50vh] bg-[url('assets/images/advertsbg.png')] bg-no-repeat bg-center bg-cover -mt-16">
-          <div className="absolute top-0 left-0 w-full h-full bg-black opacity-65"></div>
-          <div className="relative z-20 flex items-center justify-center h-full w-full px-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white text-shadow-md">
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="relative z-10 flex items-center justify-center h-full w-full px-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
               Our Products
             </h1>
           </div>
@@ -27,37 +91,29 @@ const Adverts = () => {
       </div>
 
       {/* ===== Products Grid ===== */}
-      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white shadow-md rounded-md overflow-hidden"
+            className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            {/* Product Image */}
-            <div className="bg-gray-300 h-48 flex items-center justify-center">
+            <div className="bg-gray-100 h-48 flex items-center justify-center">
               <img
                 src={product.image}
                 alt={product.title}
                 className="object-contain h-full"
+                loading="lazy"
               />
             </div>
 
-            {/* Product Info */}
-            <div className="p-4 space-y-2">
-              <h3 className="text-lg font-semibold text-center">
-                {product.title}
-              </h3>
-              <p className="text-center">{product.price}</p>
-              <p className="text-center text-sm text-gray-500">
-                {product.category}
-              </p>
+            <div className="p-5 space-y-2 text-center">
+              <h3 className="text-lg font-semibold">{product.title}</h3>
+              <p className="text-green-700 font-medium">{product.price}</p>
+              <p className="text-sm text-gray-500">{product.category}</p>
 
-              {/* View Button */}
-              <div className="flex justify-center mt-2">
-                <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-                  View
-                </button>
-              </div>
+              <button className="mt-3 bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition-colors">
+                View
+              </button>
             </div>
           </div>
         ))}
