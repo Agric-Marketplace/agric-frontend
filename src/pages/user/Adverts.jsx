@@ -97,11 +97,11 @@ const Adverts = () => {
             key={product.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <div className="bg-gray-100 h-48 flex items-center justify-center">
+            <div className="w-full h-60 bg-gray-100 overflow-hidden">
               <img
                 src={product.image}
                 alt={product.title}
-                className="object-contain h-full"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
             </div>
