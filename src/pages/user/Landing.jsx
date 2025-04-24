@@ -13,6 +13,7 @@ import p5 from "../../assets/images/p5.png";
 import thumbnail from "../../assets/images/thumbnail.png";
 import LiveAuctions from "../../components/LiveAuctions";
 import AuctionSection from "../../components/AuctionSection";
+import { Link } from "react-router";
 
 const Landing = () => {
   return (
@@ -75,7 +76,10 @@ const Landing = () => {
               </button>
 
               {/* Browse Produce */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+              <Link
+                to="/adverts"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
+              >
                 <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +97,7 @@ const Landing = () => {
                   </svg>
                 </span>
                 Browse Produce
-              </button>
+              </Link>
 
               {/* View Auctions */}
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
