@@ -22,3 +22,13 @@
   color: transparent;
   -webkit-text-fill-color: transparent; /* For Safari */
 }
+
+.swiper-fade .swiper-slide {
+  opacity: 0 !important;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+.swiper-fade .swiper-slide-active {
+  opacity: 1 !important;
+  pointer-events: auto;
+}

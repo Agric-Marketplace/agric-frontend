@@ -8,6 +8,10 @@ import beans from "../../assets/images/beans.png";
 import spinach from "../../assets/images/spinach.png";
 import lemon from "../../assets/images/lemon.png";
 import ginger from "../../assets/images/ginger.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
 
 const Adverts = () => {
   const products = [
@@ -80,14 +84,48 @@ const Adverts = () => {
     <section className="min-h-screen bg-gray-100">
       {/* ===== Hero Section ===== */}
       <div className="pt-28">
-        <div className="relative h-[50vh] bg-[url('assets/images/advertsbg.png')] bg-no-repeat bg-center bg-cover -mt-16">
-          <div className="absolute inset-0 bg-black/60"></div>
-          <div className="relative z-10 flex items-center justify-center h-full w-full px-4">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
-              Our Products
-            </h1>
-          </div>
-        </div>
+        <Swiper
+          modules={[Autoplay, EffectFade]}
+          autoplay={{ delay: 4000 }}
+          effect="fade"
+          speed={1500} // 🔹 Transition duration
+          loop={true}
+          className="h-[60vh] relative -mt-10  w-full"
+        >
+          {[
+            {
+              title: "Fresh Carrots",
+              image: carrot,
+            },
+            {
+              title: "Fresh Fruits",
+              image: fruits,
+            },
+            {
+              title: "Local Rice",
+              image: rice,
+            },
+          ].map((item, index) => (
+            <SwiperSlide key={index} className="bg-black">
+              <div className="absolute inset-0">
+                <div
+                  className="relative h-full w-full bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                  style={{
+                    backgroundImage: `url(${item.image})`,
+                    backfaceVisibility: "hidden",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-black/60"></div>
+                  <div className="relative z-10 flex items-center justify-center h-full w-full px-4">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg text-center">
+                      {item.title}
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
       {/* ===== Products Grid ===== */}
