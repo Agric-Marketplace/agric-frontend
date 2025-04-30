@@ -19,6 +19,7 @@ const Adverts = () => {
       id: 1,
       title: "Fresh Carrots",
       price: "$2.99",
+      description: "Green Valley Farms",
       category: "Vegetables",
       image: carrot,
     },
@@ -26,6 +27,7 @@ const Adverts = () => {
       id: 2,
       title: "Organic Apples",
       price: "$4.50",
+      description: "Madison Farms",
       category: "Fruits",
       image: fruits,
     },
@@ -33,6 +35,7 @@ const Adverts = () => {
       id: 3,
       title: "Basmati Rice",
       price: "$6.99",
+      description: "Vivian Farms",
       category: "Grains",
       image: rice,
     },
@@ -40,6 +43,7 @@ const Adverts = () => {
       id: 4,
       title: "Tomatoes",
       price: "$3.25",
+      description: "Green State Gardens",
       category: "Vegetables",
       image: tomatoes,
     },
@@ -47,6 +51,7 @@ const Adverts = () => {
       id: 5,
       title: "Bananas",
       price: "$1.99",
+      description: "Hope Natural Products",
       category: "Fruits",
       image: banana,
     },
@@ -54,6 +59,7 @@ const Adverts = () => {
       id: 6,
       title: "Dry Beans",
       price: "$5.00",
+      description: "Peace Farms",
       category: "Legumes",
       image: beans,
     },
@@ -61,6 +67,7 @@ const Adverts = () => {
       id: 7,
       title: "Spinach",
       price: "$2.25",
+      description: "Green State Farms",
       category: "Vegetables",
       image: spinach,
     },
@@ -68,6 +75,7 @@ const Adverts = () => {
       id: 8,
       title: "Lemons",
       price: "$3.00",
+      description: "New Horizon Farms",
       category: "Fruits",
       image: lemon,
     },
@@ -75,6 +83,7 @@ const Adverts = () => {
       id: 9,
       title: "Fresh Ginger",
       price: "$4.75",
+      description: "Hillton Farms",
       category: "Herbs",
       image: ginger,
     },
@@ -90,7 +99,7 @@ const Adverts = () => {
           effect="fade"
           speed={1500} // 🔹 Transition duration
           loop={true}
-          className="h-[60vh] relative -mt-10  w-full"
+          className="h-[50vh] relative -mt-10  w-full"
         >
           {[
             {
@@ -147,6 +156,9 @@ const Adverts = () => {
             <div className="p-5 space-y-2 text-center">
               <h3 className="text-lg font-semibold">{product.title}</h3>
               <p className="text-green-700 font-medium">{product.price}</p>
+              <p className="text-green-700 font-medium">
+                {product.description}
+              </p>
               <p className="text-sm text-gray-500">{product.category}</p>
 
               <button className="mt-3 bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition-colors">
