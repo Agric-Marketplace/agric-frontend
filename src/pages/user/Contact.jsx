@@ -9,7 +9,7 @@ const Contact = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <div className="h-[50vh] relative bg-[url('assets/images/contactbanner.png')] bg-no-repeat bg-center bg-cover -mt-4">
-        <div className="absolute top-0 left-0 w-full bg-black opacity-65 h-full"></div>
+        <div className="absolute top-0 left-0 w-full bg-black opacity-40 h-full"></div>
         <div className="relative z-20 flex items-center justify-center h-full w-full px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white text-shadow-md">
             Contact Us
