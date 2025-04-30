@@ -28,20 +28,20 @@ export default function ContactSection() {
         <ContactCard
           icon={Mail}
           title="Mail us 24/7"
-          content={["pbmInfo@admin.com", "pbmadmin@info.com"]}
+          content={["farmassit@admin.com", "farmdmin@info.com"]}
         />
         <ContactCard
           icon={Phone}
           title="Call us 24/7"
           content={[
-            "Phone: (+65) 654 - 545 - 5418",
-            "Mobile: (+01) 654 - 545 - 1235",
+            "Phone: (+233) 654 - 545 - 5418",
+            "Mobile: (+233) 654 - 545 - 1235",
           ]}
         />
         <ContactCard
           icon={MapPin}
           title="Our Locations"
-          content={["4821 Ride Tow, Arch St, Alaska", "997998, USA main city."]}
+          content={["4821 Ridge Town, Arch St, Accra", "997998, Accra, Ghana."]}
         />
       </div>
     </section>

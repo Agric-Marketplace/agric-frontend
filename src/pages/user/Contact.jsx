@@ -21,9 +21,9 @@ const Contact = () => {
 
       {/* contact form  */}
       <section>
-        <div className="flex bg-stone-50 min-h-screen p-6">
+        <div className="flex flex-col md:flex-row bg-stone-50 p-6 md:h-[700px]">
           {/* Left section with image */}
-          <div className="hidden md:block md:w-1/2 relative">
+          <div className="hidden md:block md:w-1/2 h-full">
             <img
               src={contactform}
               alt="Farmer with strawberries"
@@ -32,9 +32,9 @@ const Contact = () => {
           </div>
 
           {/* Right section with form */}
-          <div className="w-full md:w-1/2 bg-white p-8 rounded-lg md:rounded-l-none md:rounded-r-lg shadow-sm">
-            <div className="mb-6">
-              <p className="text-green-600 text-sm font-medium mb-1">
+          <div className="w-full md:w-1/2 h-full bg-white p-8 rounded-lg md:rounded-l-none md:rounded-r-lg shadow-sm flex flex-col justify-center">
+            <div className="mb-6 flex flex-col justify-evenly gap-y-4">
+              <p className="text-green-600 text-2xl font-medium mb-1">
                 Get In Contact Us
               </p>
               <h2 className="text-gray-800 text-3xl font-semibold mb-1">
@@ -45,49 +45,40 @@ const Contact = () => {
               </h3>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
-                  />
-                </div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
-                  />
-                </div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                />
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Subject"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+                />
               </div>
 
               <div>
                 <textarea
                   name="message"
-                  //   rows={5}
                   placeholder="Your message..."
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
                 ></textarea>
