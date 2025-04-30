@@ -9,7 +9,7 @@ const ContactCard = ({ icon: Icon, title, content }) => (
       </div>
       <h3 className="text-lg font-semibold">{title}</h3>
     </div>
-    <hr className="mb-4" />
+    <hr className="mb-4 text-gray-300" />
     <div className="text-sm text-gray-700 space-y-1">
       {content.map((line, idx) => (
         <p key={idx}>{line}</p>
