@@ -184,7 +184,7 @@ const Adverts = () => {
             <div className="absolute inset-0 bg-black/40" />
 
             {/* Text Overlay */}
-            <div className="absolute bottom-4 left-4 right-4 text-white z-10 space-y-1 text-center">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white space-y-1 text-center">
               <span className="bg-gray-800 text-xs px-3 py-1 rounded-full inline-block">
                 Top Pick
               </span>
