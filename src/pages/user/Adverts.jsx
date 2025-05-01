@@ -97,38 +97,60 @@ const Adverts = () => {
           modules={[Autoplay, EffectFade]}
           autoplay={{ delay: 4000 }}
           effect="fade"
-          speed={1500} // 🔹 Transition duration
+          speed={1500}
           loop={true}
-          className="h-[50vh] relative -mt-10  w-full"
+          className="h-[50vh] relative -mt-10 w-full"
         >
           {[
             {
               title: "Fresh Carrots",
               image: carrot,
+              price: "$2.99",
+              description: "Green Valley Farms",
+              tagline: "Crisp, sweet and locally grown!",
             },
             {
               title: "Fresh Fruits",
               image: fruits,
+              price: "$4.50",
+              description: "Madison Farms",
+              tagline: "A basket full of vitamins!",
             },
             {
               title: "Local Rice",
               image: rice,
+              price: "$6.99",
+              description: "Vivian Farms",
+              tagline: "Wholesome grains, farm to table.",
             },
           ].map((item, index) => (
             <SwiperSlide key={index} className="bg-black">
               <div className="absolute inset-0">
                 <div
-                  className="relative h-full w-full bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                  className="relative h-full w-full bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${item.image})`,
-                    backfaceVisibility: "hidden",
                   }}
                 >
                   <div className="absolute inset-0 bg-black/60"></div>
-                  <div className="relative z-10 flex items-center justify-center h-full w-full px-4">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg text-center">
+
+                  {/* Text Overlay */}
+                  <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-center text-white">
+                    <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow mb-2">
                       {item.title}
                     </h1>
+                    <p className="text-lg md:text-xl text-green-200 mb-2">
+                      {item.tagline}
+                    </p>
+                    <span className="bg-white text-green-700 font-semibold px-4 py-1 rounded-full mb-2 shadow">
+                      {item.price}
+                    </span>
+                    <p className="text-sm text-gray-200 italic mb-4">
+                      {item.description}
+                    </p>
+                    <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all">
+                      View Product
+                    </button>
                   </div>
                 </div>
               </div>
