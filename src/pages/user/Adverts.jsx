@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { FaLeaf } from "react-icons/fa";
 
 const Adverts = () => {
   const products = [
@@ -132,10 +133,13 @@ const Adverts = () => {
                     backgroundImage: `url(${item.image})`,
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
 
                   {/* Text Overlay */}
                   <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-center text-white">
+                    <span className="bg-green-700 text-white text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2">
+                      Organic
+                    </span>
                     <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow mb-2">
                       {item.title}
                     </h1>
@@ -145,7 +149,8 @@ const Adverts = () => {
                     <span className="bg-white text-green-700 font-semibold px-4 py-1 rounded-full mb-2 shadow">
                       {item.price}
                     </span>
-                    <p className="text-sm text-gray-200 italic mb-4">
+                    <p className="flex items-center justify-center text-sm text-gray-200 italic mb-4 ">
+                      <FaLeaf className="mr-2 text-green-400" />
                       {item.description}
                     </p>
                     <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all">
