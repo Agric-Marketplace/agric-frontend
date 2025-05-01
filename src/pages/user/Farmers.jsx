@@ -16,44 +16,44 @@ const Farmers = () => {
     {
       id: 2,
       name: "Clara Henry",
-      role: "SUPERVISOR",
+      role: "MANGO FARMER",
       image: f2,
     },
     {
       id: 3,
       name: "Paula Den",
       role: "MANAGER",
-      image: "/api/placeholder/300/300",
+      image: f1,
     },
     {
       id: 4,
       name: "Carla Hall",
-      role: "SUPERVISOR",
-      image: "/api/placeholder/300/300",
+      role: "ECO FARMER",
+      image: f2,
     },
     {
       id: 5,
       name: "Mark Donald",
       role: "FIELD MANAGER",
-      image: "/api/placeholder/300/300",
+      image: f1,
     },
     {
       id: 6,
       name: "Jamie Oliver",
       role: "GARDEN EXPERT",
-      image: "/api/placeholder/300/300",
+      image: f2,
     },
     {
       id: 7,
       name: "Alice Waters",
       role: "MAJOR MANAGER",
-      image: "/api/placeholder/300/300",
+      image: f1,
     },
     {
       id: 8,
       name: "Julia Taylor",
-      role: "SENIOR WORKER",
-      image: "/api/placeholder/300/300",
+      role: "ECO FARMER",
+      image: f2,
     },
   ];
   return (
