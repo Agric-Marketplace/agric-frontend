@@ -165,31 +165,35 @@ const Adverts = () => {
       </div>
 
       {/* ===== Products Grid ===== */}
+      {/* ===== Products Grid ===== */}
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+            className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
           >
-            <div className="w-full h-60 bg-gray-100 overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
+            {/* Background Image */}
+            <img
+              src={product.image}
+              alt={product.title}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+            />
 
-            <div className="p-5 space-y-2 text-center">
-              <h3 className="text-lg font-semibold">{product.title}</h3>
-              <p className="text-green-700 font-medium">{product.price}</p>
-              <p className="text-green-700 font-medium">
-                {product.description}
-              </p>
-              <p className="text-sm text-gray-500">{product.category}</p>
+            {/* Dark Overlay */}
+            <div className="absolute inset-0 bg-black/40" />
 
-              <button className="mt-3 bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 transition-colors">
-                View
+            {/* Text Overlay */}
+            <div className="absolute bottom-4 left-4 right-4 text-white z-10 space-y-1 text-center">
+              <span className="bg-gray-800 text-xs px-3 py-1 rounded-full inline-block">
+                Top Pick
+              </span>
+              <h3 className="text-lg font-bold">{product.title}</h3>
+              <p className="text-sm">{product.description}</p>
+              <p className="text-sm italic text-gray-300">{product.category}</p>
+
+              <button className="mt-2 bg-white text-black font-semibold px-6 py-2 rounded-full shadow-md hover:bg-gray-100">
+                Add to Cart
               </button>
             </div>
           </div>
