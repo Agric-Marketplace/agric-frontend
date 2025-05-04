@@ -123,8 +123,11 @@ const Landing = () => {
                   alt={item.label}
                   className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/40 z-10 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 left-4 text-white z-20 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                {/* Always visible dark overlay */}
+                <div className="absolute inset-0 bg-black/40 z-10 opacity-100"></div>
+
+                {/* Always visible label */}
+                <div className="absolute bottom-4 left-4 text-white z-20 opacity-100">
                   <h3 className="text-lg font-semibold">{item.label}</h3>
                 </div>
               </div>
