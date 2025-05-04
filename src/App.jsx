@@ -7,6 +7,10 @@ import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Contact from "./pages/user/Contact";
 import Farmers from "./pages/user/Farmers";
+import DashboardLayout from "./layouts/DashboardLayout";
+import Overview from "./pages/dashboard/Overview";
+import CreateAd from "./pages/dashboard/CreateAd";
+import FarmerAds from "./pages/dashboard/FarmerAds";
 
 function App() {
   return (
@@ -21,6 +25,12 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index={true} element={<Overview />} />
+          <Route path="create-ad" element={<CreateAd />} />
+          <Route path="ads" element={<FarmerAds />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
