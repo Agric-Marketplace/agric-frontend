@@ -14,6 +14,9 @@ import thumbnail from "../../assets/images/thumbnail.png";
 import LiveAuctions from "../../components/LiveAuctions";
 import AuctionSection from "../../components/AuctionSection";
 import { Link } from "react-router";
+import commodity from "../../assets/images/commodity.png";
+import agriculture from "../../assets/images/agriculture.png";
+import planting from "../../assets/images/planting.png";
 
 const Landing = () => {
   return (
@@ -56,67 +59,36 @@ const Landing = () => {
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               {/* Post a Product */}
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
-                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 4v16m8-8H4"
-                    />
-                  </svg>
+                <span className="...">
+                  <img
+                    src={agriculture}
+                    alt="Browse Produce"
+                    className="w-5 h-5 filter invert brightness-0"
+                  />
                 </span>
                 Post a Product
               </button>
 
               {/* Browse Produce */}
-              <Link
-                to="/adverts"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
-              >
-                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M3 7h18M3 12h18M3 17h18"
-                    />
-                  </svg>
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+                <span className="...">
+                  <img
+                    src={commodity}
+                    alt="Browse Produce"
+                    className="w-5 h-5 filter invert brightness-0"
+                  />
                 </span>
                 Browse Produce
-              </Link>
+              </button>
 
               {/* View Auctions */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-xl font-semibold text-white hover:bg-green-600 shadow-md hover:shadow-green-300/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
-                <span className="p-2 rounded-full shadow-gray-500 shadow-md group-hover:shadow-lg transition duration-300">
-                  {/* Updated SVG for Auctions */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 1v22m4-5l5 5-5 5m0-10l5-5-5-5"
-                    />
-                  </svg>
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+                <span className="...">
+                  <img
+                    src={planting}
+                    alt="Browse Produce"
+                    className="w-5 h-5 filter invert brightness-0"
+                  />
                 </span>
                 View Auctions
               </button>
