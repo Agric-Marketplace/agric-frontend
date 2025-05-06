@@ -2,8 +2,33 @@ import React from "react";
 import rain from "../../assets/images/formbg.mp4";
 import { Link } from "react-router";
 import formthumb from "../../assets/images/formthumb.png";
+import { useNavigate } from "react-router";
+import { apiLogin } from "../../services/auth";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    try {
+      const response = await apiLogin(formData);
+      const user = response.data;
+      localStorage.setItem("token", response.data.accessToken); //fetch token from backend
+      localStorage.setItem("user", JSON.stringify(user.role));
+
+      //nagigate user to their role
+      if (user.role === "vendor") {
+        navigate("/dashboard");
+      } else {
+        navigate("/adverts");
+      }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <video
@@ -29,7 +54,7 @@ const Login = () => {
             Farm <span className="text-green-500">Assist</span>
           </Link>
           <h1 className="text-2xl font-semibold text-center mb-6">Log In</h1>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"

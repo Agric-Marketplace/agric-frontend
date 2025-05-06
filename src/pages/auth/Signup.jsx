@@ -2,8 +2,47 @@ import React from "react";
 import { Link } from "react-router";
 import rain from "../../assets/images/formbg.mp4";
 import formthumb from "../../assets/images/formthumb.png";
+import { useNavigate } from "react-router";
+import { apiSignup } from "../../services/auth";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    // Prevent default submit bahaviour
+    event.preventDefault();
+    // Show loading indicator
+    // Collect form data
+    const data = new FormData(event.target);
+    const role = data.get("role");
+    if (!role) {
+      alert("Please select a role.");
+      return;
+    }
+    // Post data to backend
+    try {
+      const response = await apiSignup(data);
+      const user = response.data;
+      localStorage.setItem("user", JSON.stringify(user.role));
+
+      //nagigate user to their role
+      console.log("User role:", user.role); // Add this
+      if (user.role === "vendor") {
+        console.log("Navigating to /login"); // Add this
+        navigate("/login");
+      } else {
+        console.log("Navigating to /"); // Add this
+        navigate("/");
+      }
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // Hide loading indicator
+    }
+  };
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <video
@@ -29,7 +68,7 @@ const Signup = () => {
             Farm <span className="text-green-500">Assist</span>
           </Link>
           <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="name"
@@ -39,8 +78,8 @@ const Signup = () => {
               </label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="fullName"
+                name="fullName"
                 placeholder="Enter your full name"
                 required
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-300 focus:outline-none"
