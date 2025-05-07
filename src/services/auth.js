@@ -14,3 +14,14 @@ export const apiLogin = async (payload) =>
       "Content-Type": "application/json",
     },
   });
+
+/**
+ * Verify a user’s email by token.
+ * @param {string} token — the verification token from the URL
+ * @returns {Promise<{ message: string }>}
+ */
+export function apiVerifyEmail(token) {
+  return apiClient.get("/users/verify-email", {
+    params: { token },
+  });
+}
