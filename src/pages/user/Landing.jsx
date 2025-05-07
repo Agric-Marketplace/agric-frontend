@@ -33,7 +33,7 @@ const Landing = () => {
         >
           {/* <source src={herobg} type="video/mp4" /> */}
         </video>
-        <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-black/5 z-0 pointer-events-none"></div>
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gradient shadow-lg">
@@ -137,13 +137,13 @@ const Landing = () => {
       </section>
 
       {/* Trending Products */}
-      <section className="w-full bg-[#f0fdf4] py-16 lg:py-24 sm:min-h-screen">
+      <section className="w-full bg-[#f0fdf4] py-16 lg:py-24 sm:min-h-screen overflow-x-hidden">
         <div className="text-center px-4 md:px-0 mb-10">
           <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
           <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-30 justify-items-center">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-20 justify-items-center">
           <ProductCard
             image={banana}
             title="Fresh Banana"
@@ -153,7 +153,7 @@ const Landing = () => {
           <ProductCard
             image={plantain}
             title="Organic Plantain"
-            description="Organically grown plantains, perfect for frying."
+            description="Organically grown plantains."
             price="3.49"
           />
           <ProductCard
