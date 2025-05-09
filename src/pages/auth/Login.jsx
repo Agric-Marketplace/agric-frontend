@@ -13,17 +13,17 @@ const Login = () => {
 
     try {
       const response = await apiLogin(formData);
-      const user = response.data;
-      localStorage.setItem("token", response.data.accessToken); //fetch token from backend
-      localStorage.setItem("user", JSON.stringify(user.role));
+      const user = response.data.user; // FIX: access nested user object
+      localStorage.setItem("token", response.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
 
-      //nagigate user to their role
+      console.log("User role:", user.role); // Confirm it's "vendor"
+
       if (user.role === "vendor") {
         navigate("/dashboard");
       } else {
         navigate("/adverts");
       }
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
