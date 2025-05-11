@@ -1,5 +1,6 @@
 import React from "react";
 import plantain from "../assets/images/plantain.png";
+import { Link } from "react-router";
 
 const ProductCard = ({ image, title, description, price }) => {
   return (
@@ -33,12 +34,18 @@ z-index: 0;"
           <p className="mt-1 font-bold">${price}</p>
 
           <div className="flex gap-2 mt-4">
-            <button className="flex-1 bg-white text-black font-medium py-2 rounded-xl hover:bg-gray-200 transition">
+            <Link
+              to="/adverts"
+              className="flex-1 bg-white text-black text-center font-medium py-2 rounded-xl hover:bg-gray-200 transition"
+            >
               Buy
-            </button>
-            <button className="flex-1 border border-white text-white font-medium py-2 rounded-xl hover:bg-white hover:text-black transition">
+            </Link>
+            <Link
+              to="/adverts"
+              className="flex-1 border border-white text-white text-center font-medium py-2 rounded-xl hover:bg-white hover:text-black transition"
+            >
               View More
-            </button>
+            </Link>
           </div>
         </div>
       </div>
