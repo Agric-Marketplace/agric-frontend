@@ -36,7 +36,7 @@ const Landing = () => {
           {/* <source src={herobg} type="video/mp4" /> */}
         </video>
         {/* Dark overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/47 z-10" />
+        <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10" />
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
             {/* <h1
@@ -84,7 +84,7 @@ const Landing = () => {
               </button>
 
               {/* View Auctions */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-600 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
                 <span className="...">
                   <img
                     src={planting}
