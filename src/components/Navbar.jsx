@@ -8,7 +8,7 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white text-black shadow-md border-b px-6 md:px-20 py-4">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#fffff0] text-black shadow-md border-b px-6 md:px-20 py-4">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold">
