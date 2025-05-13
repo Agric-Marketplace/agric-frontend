@@ -1,5 +1,6 @@
 import React from "react";
 import herobg from "../../assets/images/herobg2.mp4";
+import herobg3 from "../../assets/images/herobg3.png";
 import p6 from "../../assets/images/p6.png";
 import banana from "../../assets/images/banana.jpg";
 import plantain from "../../assets/images/plantain.png";
@@ -29,14 +30,22 @@ const Landing = () => {
           muted
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none"
-          poster={thumbnail}
+          poster={herobg3}
         >
           {/* <source src={herobg} type="video/mp4" /> */}
         </video>
-        <div className="absolute inset-0 bg-black/5 z-0 pointer-events-none"></div>
+        {/* Dark overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10" />
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gradient shadow-lg">
+            {/* <h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold 
+            // leading-tight text-gradient shadow-lg
+            "
+            >
+              Sell Fresh. Buy Fresh. Stay Fresh.
+            </h1> */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white shadow-lg">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
