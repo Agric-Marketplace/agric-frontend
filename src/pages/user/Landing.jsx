@@ -18,6 +18,7 @@ import { Link } from "react-router";
 import commodity from "../../assets/images/commodity.png";
 import agriculture from "../../assets/images/agriculture.png";
 import planting from "../../assets/images/planting.png";
+import { ChevronDown } from "lucide-react";
 
 const Landing = () => {
   return (
@@ -35,7 +36,7 @@ const Landing = () => {
           {/* <source src={herobg} type="video/mp4" /> */}
         </video>
         {/* Dark overlay */}
-        <div className="absolute top-0 left-0 w-full h-full bg-black/40 z-10" />
+        <div className="absolute top-0 left-0 w-full h-full bg-black/47 z-10" />
         <div className="relative z-10 flex items-center justify-center h-full w-full px-4 sm:px-8">
           <div className="text-white max-w-4xl text-center space-y-6">
             {/* <h1
@@ -45,6 +46,9 @@ const Landing = () => {
             >
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1> */}
+            <p className="text-green-400 text-sm sm:text-base uppercase tracking-widest font-semibold">
+              Trusted by thousands of farmers
+            </p>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white shadow-lg">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
@@ -53,18 +57,7 @@ const Landing = () => {
               sell fresh produce straight to consumers—no middlemen, just trust.
               Safe payments, real-time listings, and farm-to-fork convenience.
             </p>
-            {/* <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-500 bg-transparent rounded-lg font-semibold hover:bg-green-500 hover:text-white transition duration-300">
-                Post a Product
-              </button>
 
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
-                Browse Produce
-              </button>
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-white bg-green-500 rounded-lg font-semibold hover:bg-green-600 transition duration-300">
-                View Auctions
-              </button>
-            </div> */}
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               {/* Post a Product */}
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
@@ -102,6 +95,18 @@ const Landing = () => {
                 View Auctions
               </button>
             </div>
+            <a
+              href="#next-section"
+              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 group"
+            >
+              <div className="animate-bounce text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
+                <ChevronDown
+                  size={48}
+                  strokeWidth={2.5}
+                  className="text-white group-hover:text-green-300"
+                />
+              </div>
+            </a>
           </div>
         </div>
       </div>
