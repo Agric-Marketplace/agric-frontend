@@ -99,10 +99,9 @@ const Landing = () => {
               href="#next-section"
               className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 group"
             >
-              <div className="animate-bounce text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-110">
+              <div className="animate-bounce bg-white/10 backdrop-blur-sm border border-white/20 rounded-full p-4 shadow-lg transition-transform group-hover:scale-110">
                 <ChevronDown
-                  size={48}
-                  strokeWidth={2.5}
+                  size={36}
                   className="text-white group-hover:text-green-300"
                 />
               </div>
