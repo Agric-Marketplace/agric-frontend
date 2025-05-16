@@ -60,7 +60,10 @@ const Landing = () => {
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
               {/* Post a Product */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+              <Link
+                to="/login"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
+              >
                 <span className="...">
                   <img
                     src={agriculture}
@@ -69,10 +72,13 @@ const Landing = () => {
                   />
                 </span>
                 Post a Product
-              </button>
+              </Link>
 
               {/* Browse Produce */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+              <Link
+                to="/adverts"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
+              >
                 <span className="...">
                   <img
                     src={commodity}
@@ -81,7 +87,7 @@ const Landing = () => {
                   />
                 </span>
                 Browse Produce
-              </button>
+              </Link>
 
               {/* View Auctions */}
               <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-600 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
@@ -127,23 +133,19 @@ const Landing = () => {
               { img: p4, label: "Dairy & Egg" },
               { img: p5, label: "Herbal Products" },
             ].map((item, index) => (
-              <div
-                key={index}
-                className="relative rounded-lg overflow-hidden group"
-              >
-                <img
-                  src={item.img}
-                  alt={item.label}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* Always visible dark overlay */}
-                <div className="absolute inset-0 bg-black/40 z-10 opacity-100"></div>
-
-                {/* Always visible label */}
-                <div className="absolute bottom-4 left-4 text-white z-20 opacity-100">
-                  <h3 className="text-lg font-semibold">{item.label}</h3>
+              <Link to="/adverts" key={index}>
+                <div className="relative rounded-lg overflow-hidden group">
+                  <img
+                    src={item.img}
+                    alt={item.label}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/40 z-10 opacity-100"></div>
+                  <div className="absolute bottom-4 left-4 text-white z-20 opacity-100">
+                    <h3 className="text-lg font-semibold">{item.label}</h3>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -187,7 +189,7 @@ const Landing = () => {
       {/* <section>
         <LiveAuctions />
       </section> */}
-      <section>
+      <section id="auction">
         <AuctionSection />
       </section>
     </div>

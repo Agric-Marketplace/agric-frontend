@@ -1,7 +1,51 @@
 import React from "react";
 import formbg from "../../assets/images/formbg.mp4";
+import { apiAddAdvert } from "../../services/products";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const CreateAd = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [file, setFile] = useState();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log(event.target);
+    setLoading(true);
+
+    const formData = new FormData(event.target); //line to get your data
+    console.log(file);
+
+    formData.append("image", file);
+
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    if (!token) {
+      alert("You are not authenticated. Please log in again.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await apiAddAdvert(formData);
+      console.log(response);
+
+      alert("Ad created successfully!"); // Show success alert
+
+      //Move user to vendor ads
+      navigate("/dashboard/ads");
+    } catch (error) {
+      console.log(error);
+
+      alert("Failed to create ad. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex-1 flex flex-col p-6 w-full bg-[#F7F7F7] pt-14 font-tektur-au">
       <h1
@@ -27,7 +71,11 @@ const CreateAd = () => {
         </div>
 
         <div className="w-full md:w-1/2 bg-white p-6 shadow-md rounded-lg h-[500px] overflow-y-auto">
-          <form action="" className="flex flex-col space-y-2">
+          <form
+            action=""
+            className="flex flex-col space-y-2"
+            onSubmit={handleSubmit}
+          >
             <div>
               <label
                 htmlFor="title"
@@ -75,12 +123,30 @@ const CreateAd = () => {
                 required
               >
                 <option value="">Select Category</option>
-                <option value="laptops">Laptops</option>
-                <option value="smartphones">Smartphones</option>
+                <option value="Vegetables">Vegetables </option>
+                {/* <option value="smartphones">Smartphones</option>
                 <option value="headphones">Headphones</option>
                 <option value="smartwatches">Smartwatches</option>
-                <option value="accessories">Accessories</option>
+                <option value="accessories">Accessories</option> */}
               </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="quantity"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Quantity*
+              </label>
+              <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                min="1"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                placeholder="Enter available quantity"
+                required
+              />
             </div>
 
             <div>
@@ -92,9 +158,10 @@ const CreateAd = () => {
               </label>
               <input
                 type="file"
-                name="image"
+                // name="image"
                 id="image"
                 accept="image/*"
+                onChange={(e) => setFile(e.target.files[0])}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 focus:border-transparent"
                 required
               />
