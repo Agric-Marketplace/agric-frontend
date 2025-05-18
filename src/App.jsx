@@ -18,6 +18,9 @@ import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import UserOverview from "./pages/userdashboard/UserOverview";
 import BuyerDashboard from "./pages/userdashboard/BuyerDashboard";
 
+import Cart from "./pages/user/Cart";
+import PaymentPage from "./pages/user/PaymentPage";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +31,9 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="farmers" element={<Farmers />} />
           <Route path="product" element={<ProductDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="paymentpage" element={<PaymentPage />} />
+          {/* <Route path="cartcontext" element={<cartcontext/>}/> */}
         </Route>
 
         <Route path="/login" element={<Login />} />
@@ -43,8 +49,8 @@ function App() {
         </Route>
 
         {/* <Route path="/user-dashboard" element={<UserDashboardLayout />}>
-          <Route index={true} element={<UserOverview />} />
-        </Route> */}
+            <Route index={true} element={<UserOverview />} />
+          </Route> */}
       </Routes>
     </BrowserRouter>
   );
