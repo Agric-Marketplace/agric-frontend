@@ -65,7 +65,7 @@ const AuctionSection = () => {
   };
 
   return (
-    <section className="w-full py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className="w-full py-8 md:py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         {/* Heading */}
         <div className="text-center space-y-4 mb-8">

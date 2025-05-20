@@ -155,7 +155,7 @@ const Landing = () => {
       </section>
 
       {/* Trending Products */}
-      <section className="w-full bg-[#f0fdf4] py-16 lg:py-24 sm:min-h-screen overflow-x-hidden">
+      <section className="w-full bg-white py-16 lg:py-24 sm:min-h-screen overflow-x-hidden">
         <div className="text-center px-4 md:px-0 mb-10">
           <h2 className="font-bold text-3xl md:text-4xl">Trending Now</h2>
           <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
