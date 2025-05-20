@@ -90,7 +90,10 @@ const Landing = () => {
               </Link>
 
               {/* View Auctions */}
-              <button className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-600 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105">
+              <Link
+                to="/auctionpage"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-600 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
+              >
                 <span className="...">
                   <img
                     src={planting}
@@ -99,7 +102,7 @@ const Landing = () => {
                   />
                 </span>
                 View Auctions
-              </button>
+              </Link>
             </div>
             <a
               href="#next-section"
@@ -117,14 +120,14 @@ const Landing = () => {
       </div>
 
       {/* Popular Categories */}
-      <section className="w-full bg-white py-12">
+      <section className="w-full bg-white py-6">
         <div className="text-center px-4 md:px-0">
           <h2 className="font-bold text-3xl md:text-4xl">Popular Categories</h2>
           <div className="w-12 h-[3px] bg-green-500 mx-auto mt-2"></div>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { img: p1, label: "Fresh Vegetables" },
               { img: fruits, label: "Fruits" },
@@ -134,7 +137,7 @@ const Landing = () => {
               { img: p5, label: "Herbal Products" },
             ].map((item, index) => (
               <Link to="/adverts" key={index}>
-                <div className="relative rounded-lg overflow-hidden group">
+                <div className="relative rounded-lg overflow-hidden group ">
                   <img
                     src={item.img}
                     alt={item.label}

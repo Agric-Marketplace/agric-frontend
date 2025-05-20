@@ -20,6 +20,7 @@ import BuyerDashboard from "./pages/userdashboard/BuyerDashboard";
 
 import Cart from "./pages/user/Cart";
 import PaymentPage from "./pages/user/PaymentPage";
+import AuctionPage from "./pages/user/AuctionPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="product" element={<ProductDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="paymentpage" element={<PaymentPage />} />
+          <Route path="auctionpage" element={<AuctionPage />} />
           {/* <Route path="cartcontext" element={<cartcontext/>}/> */}
         </Route>
 

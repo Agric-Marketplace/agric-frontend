@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import banana from "../assets/images/banana.jpg"; // Replace or update as needed
+import { Link } from "react-router";
+import banana from "../assets/images/banana.jpg";
 import tomatoes from "../assets/images/tomatoes.png";
 import lettuce from "../assets/images/lettuce.png";
 
@@ -31,7 +32,7 @@ const AuctionSection = () => {
     {
       id: 4,
       name: "Lettuce",
-      description: "Freah Lettuce",
+      description: "Fresh Lettuce",
       currentBid: 2100,
       minBid: 2200,
       endTime: "2025-12-29T17:00:00",
@@ -64,9 +65,10 @@ const AuctionSection = () => {
   };
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-gray-50 to-gray-100">
+    <section className="w-full py-8 md:py-12 lg:py-16 bg-gradient-to-b from-gray-50 to-gray-100">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center space-y-4 mb-12">
+        {/* Heading */}
+        <div className="text-center space-y-4 mb-8">
           <span className="inline-block px-3 py-1 text-sm border border-emerald-200 bg-emerald-50 text-emerald-700 rounded-full">
             Live Auctions
           </span>
@@ -80,7 +82,7 @@ const AuctionSection = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8">
           <div className="inline-flex p-1 bg-gray-100 rounded-lg">
             {["all", "ending-soon", "new-arrivals"].map((tab) => (
               <button
@@ -107,73 +109,74 @@ const AuctionSection = () => {
           {activeTab === "all" && (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {auctionItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="border rounded-lg p-4 hover:shadow-md"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-55 object-cover rounded-md mb-3"
-                  />
-                  <h4 className="text-lg font-bold">{item.name}</h4>
-                  <p className="text-sm text-gray-500 mb-2">
-                    {item.description}
-                  </p>
-                  <div className="text-sm text-gray-500 mb-2">
-                    {getTimeRemaining(item.endTime).days}d{" "}
-                    {getTimeRemaining(item.endTime).hours}h left
-                  </div>
-                  <p className="text-gray-800 font-semibold">
-                    {formatCurrency(item.currentBid)}
-                  </p>
-                  <form
-                    onSubmit={(e) => handleBid(e, item.id)}
-                    className="flex gap-2 mt-3"
-                  >
-                    <input
-                      type="number"
-                      placeholder={`Min: ${formatCurrency(item.minBid)}`}
-                      value={bidAmount}
-                      onChange={(e) => setBidAmount(e.target.value)}
-                      className="flex-1 px-3 py-2 border rounded-md"
-                      min={item.minBid}
-                      required
+                <Link to="/auctionpage" key={item.id}>
+                  <div className="border rounded-lg p-4 hover:shadow-md bg-white cursor-pointer">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-55 object-cover rounded-md mb-3"
                     />
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
+                    <h4 className="text-lg font-bold">{item.name}</h4>
+                    <p className="text-sm text-gray-500 mb-2">
+                      {item.description}
+                    </p>
+                    <div className="text-sm text-gray-500 mb-2">
+                      {getTimeRemaining(item.endTime).days}d{" "}
+                      {getTimeRemaining(item.endTime).hours}h left
+                    </div>
+                    <p className="text-gray-800 font-semibold">
+                      {formatCurrency(item.currentBid)}
+                    </p>
+                    <form
+                      onSubmit={(e) => handleBid(e, item.id)}
+                      className="flex gap-2 mt-3"
                     >
-                      Place Bid
-                    </button>
-                  </form>
-                </div>
+                      <input
+                        type="number"
+                        placeholder={`Min: ${formatCurrency(item.minBid)}`}
+                        value={bidAmount}
+                        onChange={(e) => setBidAmount(e.target.value)}
+                        className="flex-1 px-3 py-2 border rounded-md"
+                        min={item.minBid}
+                        required
+                      />
+                      <button
+                        type="submit"
+                        className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
+                      >
+                        Place Bid
+                      </button>
+                    </form>
+                  </div>
+                </Link>
               ))}
             </div>
           )}
 
           {activeTab === "ending-soon" && (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-8 text-gray-500">
               View items ending soon
             </div>
           )}
 
           {activeTab === "new-arrivals" && (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-8 text-gray-500">
               View our newest auction items
             </div>
           )}
         </div>
 
-        {/* Footer CTA */}
-        <div className="text-center mt-12 space-y-2">
+        {/* Footer CTA Button */}
+        <div className="text-center mt-8 space-y-2">
           <p className="text-gray-500">
             Don't miss out on these exclusive items. New auctions are added
             every week.
           </p>
-          <button className="px-8 py-3 bg-emerald-600 text-white font-medium rounded-md hover:bg-emerald-700">
-            View All Auctions
-          </button>
+          <Link to="/auctionpage">
+            <button className="px-8 py-3 bg-emerald-600 text-white font-medium rounded-md hover:bg-emerald-700">
+              View All Auctions
+            </button>
+          </Link>
         </div>
       </div>
     </section>
