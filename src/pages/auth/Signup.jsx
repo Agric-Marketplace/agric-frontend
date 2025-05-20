@@ -1,50 +1,47 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router"; // ✅ corrected router import
 import rain from "../../assets/images/formbg.mp4";
 import formthumb from "../../assets/images/formthumb.png";
-import { useNavigate } from "react-router";
 import { apiSignup } from "../../services/auth";
-import { useState } from "react";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(""); // ✅ message state added
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    // Prevent default submit bahaviour
     event.preventDefault();
-    // Show loading indicator
     setLoading(true);
-    // Collect form data
+    setMessage(""); // clear message on new submit
+
     const data = new FormData(event.target);
     const role = data.get("role");
+
     if (!role) {
       alert("Please select a role.");
+      setLoading(false);
       return;
     }
-    // Post data to backend
+
     try {
       const response = await apiSignup(data);
       const user = response.data;
       localStorage.setItem("user", JSON.stringify(user.role));
+      setMessage(
+        "Signup successful! Please check your email to verify your account."
+      ); // ✅ success message
 
-      alert("Signup successfull!");
-
-      //nagigate user to their role
-      console.log("User role:", user.role); // Add this
-      if (user.role === "vendor") {
-        console.log("Navigating to /login"); // Add this
-        navigate("/login");
-      } else {
-        console.log("Navigating to /"); // Add this
-        navigate("/");
-      }
-
-      console.log(response);
+      setTimeout(() => {
+        if (user.role === "vendor") {
+          navigate("/login");
+        } else {
+          navigate("/");
+        }
+      }, 2500); // give user time to see message before navigating
     } catch (error) {
       console.log(error);
+      setMessage("An error occurred during signup. Please try again.");
     } finally {
-      // Hide loading indicator
       setLoading(false);
     }
   };
@@ -65,15 +62,23 @@ const Signup = () => {
 
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
-      <div className="relative flex flex-col items-center justify-center h-full text-white ">
-        <div className="bg-black/50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-md items-center relative ">
+      <div className="relative flex flex-col items-center justify-center h-full text-white">
+        <div className="bg-black/50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-md items-center relative">
           <Link
             className="font-bold text-2xl flex mb-3 justify-center items-center"
             to="/"
           >
             Farm <span className="text-green-500">Assist</span>
           </Link>
-          <h1 className="text-2xl font-semibold text-center mb-6">Sign Up</h1>
+          <h1 className="text-2xl font-semibold text-center mb-4">Sign Up</h1>
+
+          {/* ✅ Message */}
+          {message && (
+            <div className="mb-4 text-green-400 text-center font-medium">
+              {message}
+            </div>
+          )}
+
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <label
@@ -117,18 +122,16 @@ const Signup = () => {
                 Role
               </label>
               <select
-                type="role"
                 id="role"
                 name="role"
-                placeholder="Enter your role"
                 required
-                defaultValue={" "}
+                defaultValue=""
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
               >
-                <option value="" disabled className="text-gray-400 ">
+                <option value="" disabled className="text-gray-400">
                   Select your role
                 </option>
-                <option value="user" className="text-black ">
+                <option value="user" className="text-black">
                   User
                 </option>
                 <option value="vendor" className="text-black">
@@ -191,7 +194,7 @@ const Signup = () => {
                   />
                 </svg>
               )}
-              <span>{loading ? "Signing In..." : "Sign In"}</span>
+              <span>{loading ? "Signing Up..." : "Sign Up"}</span>
             </button>
 
             <p className="text-sm text-center text-white">
