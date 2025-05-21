@@ -46,16 +46,21 @@ const Landing = () => {
             >
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1> */}
-            <p className="text-green-400 text-sm sm:text-base uppercase tracking-widest font-semibold">
+            <p className="text-green-400 text-sm sm:text-base uppercase tracking-widest font-bold animate-fade-in">
               Trusted by thousands of farmers
             </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white shadow-lg">
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight bg-gradient-to-r from-green-400 via-white to-green-300 text-transparent bg-clip-text drop-shadow-lg animate-slide-up">
               Sell Fresh. Buy Fresh. Stay Fresh.
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-              FarmAssist is your one-stop agri-tech marketplace where farmers
-              sell fresh produce straight to consumers—no middlemen, just trust.
-              Safe payments, real-time listings, and farm-to-fork convenience.
+
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+              <span className="text-green-300 font-semibold">FarmAssist</span>{" "}
+              is your one-stop agri-tech marketplace where farmers sell fresh
+              produce straight to consumers—
+              <span className="font-medium text-white">no middlemen</span>, just
+              trust. Safe payments, real-time listings, and farm-to-fork
+              convenience.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center">
