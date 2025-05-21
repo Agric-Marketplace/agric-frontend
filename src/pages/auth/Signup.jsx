@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router"; // ✅ corrected router import
 import rain from "../../assets/images/formbg.mp4";
 import formthumb from "../../assets/images/formthumb.png";
 import { apiSignup } from "../../services/auth";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [loading, setLoading] = useState(false);
@@ -27,9 +28,9 @@ const Signup = () => {
       const response = await apiSignup(data);
       const user = response.data;
       localStorage.setItem("user", JSON.stringify(user.role));
-      setMessage(
+      toast.success(
         "Signup successful! Please check your email to verify your account."
-      ); // ✅ success message
+      );
 
       setTimeout(() => {
         if (user.role === "vendor") {
@@ -40,7 +41,7 @@ const Signup = () => {
       }, 2500); // give user time to see message before navigating
     } catch (error) {
       console.log(error);
-      setMessage("An error occurred during signup. Please try again.");
+      toast.error("An error occurred during signup. Please try again.");
     } finally {
       setLoading(false);
     }

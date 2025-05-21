@@ -51,16 +51,16 @@ const AuctionSection = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat("en-US", {
+    return new Intl.NumberFormat("en-GH", {
       style: "currency",
-      currency: "USD",
+      currency: "GHS",
       minimumFractionDigits: 0,
     }).format(amount);
   };
 
   const handleBid = (e, itemId) => {
     e.preventDefault();
-    alert(`Bid of ${bidAmount} placed on item #${itemId}`);
+    alert(`Bid of ${formatCurrency(bidAmount)} placed on item #${itemId}`);
     setBidAmount("");
   };
 

@@ -5,6 +5,7 @@ import formthumb from "../../assets/images/formthumb.png";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { apiLogin } from "../../services/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ const Login = () => {
       localStorage.setItem("token", response.data.accessToken);
       localStorage.setItem("user", JSON.stringify(user));
 
-      alert("Login successfull!");
+      toast.success("Login successful!");
 
       console.log("User role:", user.role); // Confirm it's "vendor"
 
@@ -33,6 +34,7 @@ const Login = () => {
       }
     } catch (error) {
       console.log(error);
+      toast.error("Login failed. Please check your credentials and try again.");
     } finally {
       setLoading(false);
     }

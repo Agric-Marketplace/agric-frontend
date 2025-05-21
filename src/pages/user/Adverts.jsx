@@ -24,7 +24,7 @@ const Adverts = () => {
     {
       id: 1,
       title: "Fresh Carrots",
-      price: "$2.99",
+      price: " ₵2.99",
       description: "Green Valley Farms",
       category: "Vegetables",
       image: carrot,
@@ -32,7 +32,7 @@ const Adverts = () => {
     {
       id: 2,
       title: "Organic Apples",
-      price: "$4.50",
+      price: " ₵4.50",
       description: "Madison Farms",
       category: "Fruits",
       image: fruits,
@@ -40,7 +40,7 @@ const Adverts = () => {
     {
       id: 3,
       title: "Basmati Rice",
-      price: "$6.99",
+      price: " ₵6.99",
       description: "Vivian Farms",
       category: "Grains",
       image: rice,
@@ -48,7 +48,7 @@ const Adverts = () => {
     {
       id: 4,
       title: "Tomatoes",
-      price: "$3.25",
+      price: " ₵3.25",
       description: "Green State Gardens",
       category: "Vegetables",
       image: tomatoes,
@@ -56,7 +56,7 @@ const Adverts = () => {
     {
       id: 5,
       title: "Bananas",
-      price: "$1.99",
+      price: " ₵1.99",
       description: "Hope Natural Products",
       category: "Fruits",
       image: banana,
@@ -64,7 +64,7 @@ const Adverts = () => {
     {
       id: 6,
       title: "Dry Beans",
-      price: "$5.00",
+      price: " ₵5.00",
       description: "Peace Farms",
       category: "Legumes",
       image: beans,
@@ -72,7 +72,7 @@ const Adverts = () => {
     {
       id: 7,
       title: "Spinach",
-      price: "$2.25",
+      price: " ₵2.25",
       description: "Green State Farms",
       category: "Vegetables",
       image: spinach,
@@ -80,7 +80,7 @@ const Adverts = () => {
     {
       id: 8,
       title: "Lemons",
-      price: "$3.00",
+      price: " ₵3.00",
       description: "New Horizon Farms",
       category: "Fruits",
       image: lemon,
@@ -88,7 +88,7 @@ const Adverts = () => {
     {
       id: 9,
       title: "Fresh Ginger",
-      price: "$4.75",
+      price: " ₵4.75",
       description: "Hillton Farms",
       category: "Herbs",
       image: ginger,
@@ -99,21 +99,21 @@ const Adverts = () => {
     {
       title: "Fresh Carrots",
       image: carrot,
-      price: "$2.99",
+      price: " ₵2.99",
       description: "Green Valley Farms",
       tagline: "Crisp, sweet and locally grown!",
     },
     {
       title: "Fresh Fruits",
       image: fruits,
-      price: "$4.50",
+      price: " ₵4.50",
       description: "Madison Farms",
       tagline: "A basket full of vitamins!",
     },
     {
       title: "Local Rice",
       image: rice,
-      price: "$6.99",
+      price: " ₵6.99",
       description: "Vivian Farms",
       tagline: "Wholesome grains, farm to table.",
     },

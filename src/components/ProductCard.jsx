@@ -31,7 +31,7 @@ z-index: 0;"
         >
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-sm text-gray-300">{description}</p>
-          <p className="mt-1 font-bold">${price}</p>
+          <p className="mt-1 font-bold"> ₵{price}</p>
 
           <div className="flex gap-2 mt-4">
             <Link

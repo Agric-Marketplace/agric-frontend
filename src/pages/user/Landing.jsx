@@ -171,25 +171,25 @@ const Landing = () => {
             image={banana}
             title="Fresh Banana"
             description="Naturally ripened farm bananas."
-            price="2.99"
+            price=" 2.99"
           />
           <ProductCard
             image={plantain}
             title="Organic Plantain"
             description="Organically grown plantains."
-            price="3.49"
+            price=" 3.49"
           />
           <ProductCard
             image={p6}
             title="Red Apples"
             description="Crisp and juicy red apples."
-            price="4.99"
+            price=" 4.99"
           />
           <ProductCard
             image={fruits}
             title="Mixed Fruits Basket"
             description="A handpicked selection of fresh fruits."
-            price="12.99"
+            price=" 12.99"
           />
         </div>
       </section>

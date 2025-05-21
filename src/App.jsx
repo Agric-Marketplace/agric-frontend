@@ -21,6 +21,10 @@ import BuyerDashboard from "./pages/userdashboard/BuyerDashboard";
 import Cart from "./pages/user/Cart";
 import PaymentPage from "./pages/user/PaymentPage";
 import AuctionPage from "./pages/user/AuctionPage";
+import SuperDashboardLayout from "./layouts/SuperDashboardLayout";
+import SuperOverview from "./pages/dashboard/SuperOverview";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -50,10 +54,16 @@ function App() {
           <Route path="edit-ad" element={<EditProduct />} />
         </Route>
 
+        <Route path="/superdashboard" element={<SuperDashboardLayout />}>
+          <Route index={true} element={<SuperOverview />} />
+        </Route>
+
         {/* <Route path="/user-dashboard" element={<UserDashboardLayout />}>
-            <Route index={true} element={<UserOverview />} />
-          </Route> */}
+          <Route index={true} element={<SuperOverview />} />
+          <Route index={true} element={<SuperOverview/>}/>
+        </Route> */}
       </Routes>
+      <ToastContainer position="top-center" />
     </BrowserRouter>
   );
 }
