@@ -24,7 +24,7 @@ const Adverts = () => {
     {
       id: 1,
       title: "Fresh Carrots",
-      price: " ₵2.99",
+      price: "₵2.99", // Price as string with symbol
       description: "Green Valley Farms",
       category: "Vegetables",
       image: carrot,
@@ -32,7 +32,7 @@ const Adverts = () => {
     {
       id: 2,
       title: "Organic Apples",
-      price: " ₵4.50",
+      price: "₵4.50",
       description: "Madison Farms",
       category: "Fruits",
       image: fruits,
@@ -40,7 +40,7 @@ const Adverts = () => {
     {
       id: 3,
       title: "Basmati Rice",
-      price: " ₵6.99",
+      price: "₵6.99",
       description: "Vivian Farms",
       category: "Grains",
       image: rice,
@@ -48,7 +48,7 @@ const Adverts = () => {
     {
       id: 4,
       title: "Tomatoes",
-      price: " ₵3.25",
+      price: "₵3.25",
       description: "Green State Gardens",
       category: "Vegetables",
       image: tomatoes,
@@ -56,7 +56,7 @@ const Adverts = () => {
     {
       id: 5,
       title: "Bananas",
-      price: " ₵1.99",
+      price: "₵1.99",
       description: "Hope Natural Products",
       category: "Fruits",
       image: banana,
@@ -64,7 +64,7 @@ const Adverts = () => {
     {
       id: 6,
       title: "Dry Beans",
-      price: " ₵5.00",
+      price: "₵5.00",
       description: "Peace Farms",
       category: "Legumes",
       image: beans,
@@ -72,7 +72,7 @@ const Adverts = () => {
     {
       id: 7,
       title: "Spinach",
-      price: " ₵2.25",
+      price: "₵2.25",
       description: "Green State Farms",
       category: "Vegetables",
       image: spinach,
@@ -80,7 +80,7 @@ const Adverts = () => {
     {
       id: 8,
       title: "Lemons",
-      price: " ₵3.00",
+      price: "₵3.00",
       description: "New Horizon Farms",
       category: "Fruits",
       image: lemon,
@@ -88,7 +88,7 @@ const Adverts = () => {
     {
       id: 9,
       title: "Fresh Ginger",
-      price: " ₵4.75",
+      price: "₵4.75",
       description: "Hillton Farms",
       category: "Herbs",
       image: ginger,
@@ -99,37 +99,35 @@ const Adverts = () => {
     {
       title: "Fresh Carrots",
       image: carrot,
-      price: " ₵2.99",
+      price: "₵2.99",
       description: "Green Valley Farms",
-      tagline: "Crisp, sweet and locally grown!",
+      tagline: "Crisp, sweet, and locally grown!",
     },
     {
       title: "Fresh Fruits",
       image: fruits,
-      price: " ₵4.50",
+      price: "₵4.50",
       description: "Madison Farms",
       tagline: "A basket full of vitamins!",
     },
     {
       title: "Local Rice",
       image: rice,
-      price: " ₵6.99",
+      price: "₵6.99",
       description: "Vivian Farms",
       tagline: "Wholesome grains, farm to table.",
     },
   ];
 
-  // Price formatting function
+  // Price formatting function for Cedis
   const formatPrice = (price) => {
     if (typeof price === "string") {
-      // Remove the "$" and parse the string to a float
-      const numericPrice = parseFloat(price.replace("$", "").trim());
-      return isNaN(numericPrice) ? 0 : numericPrice; // Return 0 if it's NaN
+      const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ""));
+      return isNaN(numericPrice) ? 0 : numericPrice;
     } else if (typeof price === "number") {
-      // If price is already a number, return it as-is
       return price;
     }
-    return 0; // Return 0 if the price is neither a string nor a number
+    return 0;
   };
 
   return (
@@ -211,15 +209,16 @@ const Adverts = () => {
               <p className="text-sm">{product.description}</p>
               <p className="text-sm italic text-gray-300">{product.category}</p>
               <p className="text-md font-semibold text-green-300">
-                {formatPrice(product.price) > 0
-                  ? `$${formatPrice(product.price).toFixed(2)}`
-                  : product.price}
+                ₵{formatPrice(product.price).toFixed(2)}
               </p>
               <Link
                 to="/cart"
                 onClick={() => {
-                  console.log("Add button clicked");
-                  addToCart(product);
+                  const productToAdd = {
+                    ...product,
+                    price: formatPrice(product.price), // Ensure price is numeric
+                  };
+                  addToCart(productToAdd);
                 }}
                 className="mt-2 bg-white text-black font-semibold px-6 py-2 rounded-full shadow-md hover:bg-gray-100"
               >
