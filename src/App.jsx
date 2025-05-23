@@ -27,6 +27,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ConfirmPage from "./pages/user/ConfirmPage";
 import ReviewPage from "./pages/user/ReviewPage";
+import SuperAdminLoginPage from "./pages/auth/SuperAdminLoginPage";
+import SelectLoginFarmAssist from "./pages/auth/SelectLoginFarmAssist";
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
+        <Route path="/superlogin" element={<SuperAdminLoginPage />} />
+        <Route path="/selectlogin" element={<SelectLoginFarmAssist />} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<Overview />} />
