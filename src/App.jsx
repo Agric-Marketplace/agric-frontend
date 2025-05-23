@@ -25,6 +25,8 @@ import SuperDashboardLayout from "./layouts/SuperDashboardLayout";
 import SuperOverview from "./pages/dashboard/SuperOverview";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmPage from "./pages/user/ConfirmPage";
+import ReviewPage from "./pages/user/ReviewPage";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="paymentpage" element={<PaymentPage />} />
           <Route path="auctionpage" element={<AuctionPage />} />
+          <Route path="confirm" element={<ConfirmPage />} />
+          <Route path="review" element={<ReviewPage />} />
           {/* <Route path="cartcontext" element={<cartcontext/>}/> */}
         </Route>
 

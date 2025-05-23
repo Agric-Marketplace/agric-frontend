@@ -7,11 +7,13 @@ import troy from "../../assets/images/troy.png";
 import visa from "../../assets/images/visa.png";
 import mastercard from "../../assets/images/mastercard.png";
 import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router";
 
 export default function PaymentPage() {
   const [selectedCard, setSelectedCard] = useState(0);
   const [setAsDefault, setSetAsDefault] = useState(false);
 
+  const navigate = useNavigate();
   const { cart } = useCart();
 
   const totalPrice = cart.reduce(
@@ -249,7 +251,10 @@ export default function PaymentPage() {
             </div>
           </div>
 
-          <button className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg mt-4 transition-colors">
+          <button
+            onClick={() => navigate("/review")}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-4 rounded-lg mt-4 transition-colors"
+          >
             Review Your Order
           </button>
         </div>
