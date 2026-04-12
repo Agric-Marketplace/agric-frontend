@@ -16,33 +16,52 @@ const Signup = () => {
     setMessage(""); // clear message on new submit
 
     const data = new FormData(event.target);
-    const role = data.get("role");
+    const formValues = Object.fromEntries(data.entries());
 
-    if (!role) {
-      alert("Please select a role.");
+    if (!formValues.role) {
+      toast.error("Please select a role.");
+      setLoading(false);
+      return;
+    }
+    if (formValues.password !== formValues.confirmPassword) {
+      toast.error("Passwords do not match.");
       setLoading(false);
       return;
     }
 
-    try {
-      const response = await apiSignup(data);
-      const user = response.data;
-      localStorage.setItem("user", JSON.stringify(user.role));
+
+  try {
+      await apiSignup(formValues);
+      localStorage.setItem("user", JSON.stringify(formValues.role));
+      
       toast.success(
         "Signup successful! Please check your email to verify your account."
       );
 
       setTimeout(() => {
-        if (user.role === "vendor") {
+        if (formValues.role === "vendor") {
           navigate("/login");
         } else {
           navigate("/");
         }
       }, 2500); // give user time to see message before navigating
     } catch (error) {
-      console.log(error);
-      toast.error("An error occurred during signup. Please try again.");
+      console.log("Full error:", error);
+      
+      const responseData = error.response?.data;
+      let errorMessage = "An error occurred during signup.";
+
+      if (responseData?.details && Array.isArray(responseData.details)) {
+        errorMessage = responseData.details[0].message.replace(/"/g, '');
+      } else if (typeof responseData === 'string') {
+        errorMessage = responseData;
+      } else if (responseData?.message) {
+        errorMessage = responseData.message;
+      }
+
+      toast.error(errorMessage);
     } finally {
+
       setLoading(false);
     }
   };
