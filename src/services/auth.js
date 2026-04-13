@@ -26,3 +26,9 @@ export function apiVerifyEmail(token) {
     params: { token },
   });
 }
+
+export const apiLogout = async () => {
+  return apiClient.post("/users/logout", {}, {
+    withCredentials: true 
+  });
+};

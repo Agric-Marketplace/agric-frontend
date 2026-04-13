@@ -1,12 +1,43 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router"; 
 import { Menu, X } from "lucide-react";
+import { toast } from "react-toastify";
+import { apiLogout } from "../../services/auth"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null); 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
+
+ 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      setUser(null);
+    }
+  }, [location.pathname]);
+
+  
+  const handleLogout = async () => {
+    try {
+      // Tell the backend to destroy the session/cookie
+      await apiLogout(); 
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      // Wipe frontend storage regardless of backend success
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+      toast.success("Successfully logged out!");
+      navigate("/login"); 
+    }
+  };
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -46,19 +77,42 @@ const Navbar = () => {
         </div>
 
         {/* Auth Buttons (Desktop) */}
-        <div className="hidden md:flex gap-x-4">
-          <Link
-            to="/signup"
-            className="px-4 py-2 bg-green-500 hover:bg-white hover:text-green-500 border border-green-500 rounded-lg font-semibold transition"
-          >
-            Sign Up
-          </Link>
-          <Link
-            to="/login"
-            className="px-4 py-2 bg-green-500 hover:bg-white hover:text-green-500 border border-green-500 rounded-lg font-semibold transition"
-          >
-            Login
-          </Link>
+        <div className="hidden md:flex items-center gap-x-4">
+          {user ? (
+            
+            <>
+              {/* Dynamic Dashboard Link based on role */}
+              <Link 
+                to={user.role === "vendor" ? "/dashboard" : "/buyer-dashboard"} 
+                title="Go to Dashboard"
+                className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-bold uppercase shadow-md hover:bg-green-600 transition"
+              >
+                {user.fullName ? user.fullName.charAt(0) : "U"}
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 text-red-500 hover:bg-red-50 border border-red-500 rounded-lg font-semibold transition"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            /* ❌ SHOW THIS IF LOGGED OUT */
+            <>
+              <Link
+                to="/signup"
+                className="px-4 py-2 bg-green-500 text-white hover:bg-white hover:text-green-500 border border-green-500 rounded-lg font-semibold transition"
+              >
+                Sign Up
+              </Link>
+              <Link
+                to="/login"
+                className="px-4 py-2 bg-white text-green-500 hover:bg-green-50 border border-green-500 rounded-lg font-semibold transition"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -84,20 +138,53 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/signup"
-            className="text-green-600 font-semibold"
-            onClick={toggleMenu}
-          >
-            Sign Up
-          </Link>
-          <Link
-            to="/login"
-            className="text-green-600 font-semibold"
-            onClick={toggleMenu}
-          >
-            Login
-          </Link>
+          
+          <hr className="w-3/4 border-gray-200 my-2" />
+
+          {/* Mobile Auth Buttons */}
+          {user ? (
+             <>
+               <div className="flex items-center gap-3 text-gray-700 font-semibold mb-2">
+                 <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold uppercase">
+                    {user.fullName ? user.fullName.charAt(0) : "U"}
+                 </div>
+                 <span>Hi, {user.fullName?.split(" ")[0]}</span>
+               </div>
+               <Link
+                 to={user.role === "vendor" ? "/dashboard" : "/buyer-dashboard"}
+                 className="text-green-600 font-semibold"
+                 onClick={toggleMenu}
+               >
+                 My Dashboard
+               </Link>
+               <button
+                 onClick={() => {
+                   handleLogout();
+                   toggleMenu();
+                 }}
+                 className="text-red-500 font-semibold"
+               >
+                 Logout
+               </button>
+             </>
+          ) : (
+             <>
+                <Link
+                  to="/signup"
+                  className="text-green-600 font-semibold"
+                  onClick={toggleMenu}
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  to="/login"
+                  className="text-green-600 font-semibold"
+                  onClick={toggleMenu}
+                >
+                  Login
+                </Link>
+             </>
+          )}
         </div>
       )}
     </nav>
