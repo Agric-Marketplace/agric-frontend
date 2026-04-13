@@ -35,7 +35,7 @@ const FarmerAds = () => {
       await apiDeleteAdvert(id);
       toast.success("Advert deleted successfully!");
       // Instantly remove the deleted product from the screen without reloading
-      setProducts(products.filter((product) => product._id !== id));
+      setProducts(products.filter((product) => product._productId !== id));
     } catch (error) {
       console.error("Delete error:", error);
       toast.error("Failed to delete advert.");
@@ -70,7 +70,7 @@ const FarmerAds = () => {
         <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
             <div
-              key={product._id}
+              key={product.productId}
               className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               {/* Background Image */}
@@ -100,13 +100,13 @@ const FarmerAds = () => {
 
                 <div className="flex gap-3 mt-4">
                   <button 
-                    onClick={() => navigate(`/dashboard/edit-ad/${product._id}`)}
+                    onClick={() => navigate(`/dashboard/edit-ad/${product.productId}`)}
                     className="bg-blue-500 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md hover:bg-blue-600 transition"
                   >
                     Edit
                   </button>
                   <button 
-                    onClick={() => handleDelete(product._id)}
+                    onClick={() => handleDelete(product.productId)}
                     className="bg-red-500 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-md hover:bg-red-600 transition"
                   >
                     Delete
