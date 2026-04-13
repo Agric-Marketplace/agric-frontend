@@ -10,6 +10,7 @@ import Farmers from "./pages/user/Farmers";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Overview from "./pages/dashboard/Overview";
 import CreateAd from "./pages/dashboard/CreateAd";
+import EditAd from "./pages/dashboard/EditAd";
 import FarmerAds from "./pages/dashboard/FarmerAds";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import ProductDetail from "./pages/user/ProductDetail";
@@ -58,8 +59,8 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index={true} element={<Overview />} />
           <Route path="create-ad" element={<CreateAd />} />
+          <Route path="edit-ad/:id" element={<EditAd />} />
           <Route path="ads" element={<FarmerAds />} />
-          <Route path="edit-ad" element={<EditProduct />} />
         </Route>
 
         <Route path="/superdashboard" element={<SuperDashboardLayout />}>

@@ -22,3 +22,38 @@ export const apiGetAllAdverts = async () => {
     );
   }
 };
+
+export const apiGetVendorAdverts = async () => {
+  return apiClient.get("/products/vendor", {
+    withCredentials: true, 
+  });
+};
+
+export const apiDeleteAdvert = async (id) => {
+  return apiClient.delete(`/products/vendor/${id}`, {
+    withCredentials: true,
+  });
+};
+
+export const apiGetVendorAdvertById = async (id) => {
+  return apiClient.get(`/products/vendor/${id}`, {
+    withCredentials: true,
+  });
+};
+
+export const apiUpdateAdvert = async (id, payload) => {
+  // This sends standard JSON for the text fields
+  return apiClient.put(`/products/vendor/${id}`, payload, {
+    withCredentials: true,
+  });
+};
+
+export const apiUpdateAdvertImage = async (id, formData) => {
+  // This sends multipart/form-data for the new image
+  return apiClient.patch(`/products/vendor/${id}`, formData, {
+    withCredentials: true,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
