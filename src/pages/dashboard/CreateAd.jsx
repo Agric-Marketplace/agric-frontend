@@ -123,11 +123,10 @@ const CreateAd = () => {
                 required
               >
                 <option value="">Select Category</option>
-                <option value="Vegetables">Vegetables </option>
-                {/* <option value="smartphones">Smartphones</option>
-                <option value="headphones">Headphones</option>
-                <option value="smartwatches">Smartwatches</option>
-                <option value="accessories">Accessories</option> */}
+                <option value="Fruits">Fruits</option>
+                <option value="Grains">Grains</option>
+                <option value="Cereals">Cereals</option>
+                <option value="Vegetables">Vegetables</option>
               </select>
             </div>
 
