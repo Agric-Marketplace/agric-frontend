@@ -1,13 +1,4 @@
-import React from "react";
-import carrot from "../../assets/images/carrots.png";
-import fruits from "../../assets/images/fruits.png";
-import rice from "../../assets/images/rice.png";
-import tomatoes from "../../assets/images/tomatoes.png";
-import banana from "../../assets/images/banana.jpg";
-import beans from "../../assets/images/beans.png";
-import spinach from "../../assets/images/spinach.png";
-import lemon from "../../assets/images/lemon.png";
-import ginger from "../../assets/images/ginger.png";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -15,221 +6,160 @@ import "swiper/css/effect-fade";
 import { FaLeaf } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
 import { Link } from "react-router";
+import { apiGetAllAdverts } from "../../services/products";
+import { toast } from "react-toastify";
 
 const Adverts = () => {
   const { addToCart } = useCart();
+  const [products, setProducts] = useState([]);
+  const [heroSlides, setHeroSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Product data
-  const products = [
-    {
-      id: 1,
-      title: "Fresh Carrots",
-      price: "₵2.99", // Price as string with symbol
-      description: "Green Valley Farms",
-      category: "Vegetables",
-      image: carrot,
-    },
-    {
-      id: 2,
-      title: "Organic Apples",
-      price: "₵4.50",
-      description: "Madison Farms",
-      category: "Fruits",
-      image: fruits,
-    },
-    {
-      id: 3,
-      title: "Basmati Rice",
-      price: "₵6.99",
-      description: "Vivian Farms",
-      category: "Grains",
-      image: rice,
-    },
-    {
-      id: 4,
-      title: "Tomatoes",
-      price: "₵3.25",
-      description: "Green State Gardens",
-      category: "Vegetables",
-      image: tomatoes,
-    },
-    {
-      id: 5,
-      title: "Bananas",
-      price: "₵1.99",
-      description: "Hope Natural Products",
-      category: "Fruits",
-      image: banana,
-    },
-    {
-      id: 6,
-      title: "Dry Beans",
-      price: "₵5.00",
-      description: "Peace Farms",
-      category: "Legumes",
-      image: beans,
-    },
-    {
-      id: 7,
-      title: "Spinach",
-      price: "₵2.25",
-      description: "Green State Farms",
-      category: "Vegetables",
-      image: spinach,
-    },
-    {
-      id: 8,
-      title: "Lemons",
-      price: "₵3.00",
-      description: "New Horizon Farms",
-      category: "Fruits",
-      image: lemon,
-    },
-    {
-      id: 9,
-      title: "Fresh Ginger",
-      price: "₵4.75",
-      description: "Hillton Farms",
-      category: "Herbs",
-      image: ginger,
-    },
-  ];
+  // Fetch all live products from the backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await apiGetAllAdverts();
+        // Based on your backend controller, data is inside response.products
+        const liveProducts = response.products || [];
+        
+        setProducts(liveProducts);
+        // Automatically feature the 3 newest/top products in the hero slider
+        setHeroSlides(liveProducts.slice(0, 3));
+      } catch (error) {
+        console.error("Error fetching adverts:", error);
+        toast.error("Failed to load products. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const heroSlides = [
-    {
-      title: "Fresh Carrots",
-      image: carrot,
-      price: "₵2.99",
-      description: "Green Valley Farms",
-      tagline: "Crisp, sweet, and locally grown!",
-    },
-    {
-      title: "Fresh Fruits",
-      image: fruits,
-      price: "₵4.50",
-      description: "Madison Farms",
-      tagline: "A basket full of vitamins!",
-    },
-    {
-      title: "Local Rice",
-      image: rice,
-      price: "₵6.99",
-      description: "Vivian Farms",
-      tagline: "Wholesome grains, farm to table.",
-    },
-  ];
+    fetchProducts();
+  }, []);
 
-  // Price formatting function for Cedis
-  const formatPrice = (price) => {
-    if (typeof price === "string") {
-      const numericPrice = parseFloat(price.replace(/[^\d.-]/g, ""));
-      return isNaN(numericPrice) ? 0 : numericPrice;
-    } else if (typeof price === "number") {
-      return price;
-    }
-    return 0;
-  };
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+        <p className="text-2xl font-bold text-green-600 animate-pulse">Harvesting fresh products...</p>
+      </div>
+    );
+  }
 
   return (
     <section className="min-h-screen bg-gray-100">
       {/* ===== Hero Section ===== */}
-      <div className="pt-28">
-        <Swiper
-          modules={[Autoplay, EffectFade]}
-          autoplay={{ delay: 4000 }}
-          effect="fade"
-          speed={1500}
-          loop
-          className="h-[50vh] relative -mt-10 w-full"
-        >
-          {heroSlides.map((item, index) => (
-            <SwiperSlide key={index} className="bg-black">
-              <div className="absolute inset-0">
-                <div
-                  className="relative h-full w-full bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${item.image})`,
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+      {heroSlides.length > 0 && (
+        <div className="pt-28">
+          <Swiper
+            modules={[Autoplay, EffectFade]}
+            autoplay={{ delay: 4000 }}
+            effect="fade"
+            speed={1500}
+            loop
+            className="h-[50vh] relative -mt-10 w-full"
+          >
+            {heroSlides.map((item) => (
+              <SwiperSlide key={item.productId} className="bg-black">
+                <div className="absolute inset-0">
+                  <div
+                    className="relative h-full w-full bg-cover bg-center"
+                    style={{
+                      backgroundImage: `url(${item.image})`, // ✅ Cloudinary URL
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
 
-                  {/* Text Overlay */}
-                  <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-center text-white">
-                    <span className="bg-green-700 text-white text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2">
-                      Organic
-                    </span>
-                    <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow mb-2">
-                      {item.title}
-                    </h1>
-                    <p className="text-lg md:text-xl text-green-200 mb-2">
-                      {item.tagline}
-                    </p>
-                    <span className="bg-white text-green-700 font-semibold px-4 py-1 rounded-full mb-2 shadow">
-                      {item.price}
-                    </span>
-                    <p className="flex items-center justify-center text-sm text-gray-200 italic mb-4">
-                      <FaLeaf className="mr-2 text-green-400" />
-                      {item.description}
-                    </p>
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all">
-                      View Product
-                    </button>
+                    {/* Text Overlay */}
+                    <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-center text-white">
+                      <span className="bg-green-700 text-white text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2">
+                        Featured {item.category}
+                      </span>
+                      <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow mb-2">
+                        {item.title}
+                      </h1>
+                      <span className="bg-white text-green-700 font-bold text-xl px-4 py-1 rounded-full mb-2 shadow">
+                        ₵{item.price.toFixed(2)}
+                      </span>
+                      <p className="flex items-center justify-center text-sm text-gray-200 italic mb-4 max-w-md line-clamp-2">
+                        <FaLeaf className="mr-2 text-green-400 flex-shrink-0" />
+                        {item.description}
+                      </p>
+                      {/* You can change this to scroll down or link to a specific product detail page later */}
+                      <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all shadow-lg">
+                        Shop Now
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
 
       {/* ===== Products Grid ===== */}
-      <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
-          >
-            {/* Background Image */}
-            <img
-              src={product.image}
-              alt={product.title}
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-            />
-
-            {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/40" />
-
-            {/* Text Overlay */}
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white space-y-1 text-center">
-              <span className="bg-gray-800 text-xs px-3 py-1 rounded-full inline-block">
-                Top Pick
-              </span>
-              <h3 className="text-lg font-bold">{product.title}</h3>
-              <p className="text-sm">{product.description}</p>
-              <p className="text-sm italic text-gray-300">{product.category}</p>
-              <p className="text-md font-semibold text-green-300">
-                ₵{formatPrice(product.price).toFixed(2)}
-              </p>
-              <Link
-                to="/cart"
-                onClick={() => {
-                  const productToAdd = {
-                    ...product,
-                    price: formatPrice(product.price), // Ensure price is numeric
-                  };
-                  addToCart(productToAdd);
-                }}
-                className="mt-2 bg-white text-black font-semibold px-6 py-2 rounded-full shadow-md hover:bg-gray-100"
-              >
-                Add to Cart
-              </Link>
-            </div>
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        {products.length === 0 ? (
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-bold text-gray-500">No products available right now.</h2>
+            <p className="text-gray-400 mt-2">Check back later for fresh farm produce!</p>
           </div>
-        ))}
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <div
+                key={product.productId}
+                className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                {/* Background Image - Cloudinary URL */}
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="absolute inset-0 w-full h-full object-cover bg-white"
+                  loading="lazy"
+                  onError={(e) => { e.target.src = "https://via.placeholder.com/400x300?text=No+Image" }}
+                />
+
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/50 hover:bg-black/40 transition-colors" />
+
+                {/* Text Overlay */}
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white space-y-1 text-center p-4">
+                  <span className="bg-gray-800/80 backdrop-blur-sm text-xs px-3 py-1 rounded-full inline-block border border-gray-600">
+                    {product.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-shadow">{product.title}</h3>
+                  <p className="text-sm line-clamp-2 px-2 text-gray-200">{product.description}</p>
+                  
+                  <p className="text-lg font-bold text-green-400 mt-1 drop-shadow-md">
+                    ₵{product.price.toFixed(2)}
+                  </p>
+                  
+                  <Link
+                    to="/cart"
+                    onClick={() => {
+                      const productToAdd = {
+                        ...product,
+                        // Price is already a number from the backend, so we pass it straight through
+                        price: product.price, 
+                      };
+                      addToCart(productToAdd);
+                    }}
+                    className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors"
+                  >
+                    Add to Cart
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
 export default Adverts;
+
+
+
