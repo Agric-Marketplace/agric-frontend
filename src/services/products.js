@@ -3,9 +3,6 @@ import { apiClient } from "./config";
 export const apiAddAdvert = async (payload) => {
   return apiClient.post("/products", payload, {
     withCredentials: true, // Include credentials (cookies) with the request
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
 };
 
@@ -52,8 +49,5 @@ export const apiUpdateAdvertImage = async (id, formData) => {
   // This sends multipart/form-data for the new image
   return apiClient.patch(`/products/vendor/${id}`, formData, {
     withCredentials: true,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
   });
 };

@@ -177,7 +177,7 @@ const CreateAd = () => {
                 Price
               </label>
               <input
-                type="text"
+                type="number"
                 name="price"
                 id="price"
                 className="w-full pl-7 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-400 focus:border-transparent"
