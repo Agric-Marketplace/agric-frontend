@@ -59,7 +59,7 @@ const Adverts = () => {
             className="h-[50vh] relative -mt-10 w-full"
           >
             {heroSlides.map((item) => (
-              <SwiperSlide key={item.productId} className="bg-black">
+              <SwiperSlide key={item._id || item.productId} className="bg-black">
                 <div className="absolute inset-0">
                   <div
                     className="relative h-full w-full bg-cover bg-center"
@@ -78,13 +78,12 @@ const Adverts = () => {
                         {item.title}
                       </h1>
                       <span className="bg-white text-green-700 font-bold text-xl px-4 py-1 rounded-full mb-2 shadow">
-                        ₵{item.price.toFixed(2)}
+                        ₵{(parseFloat(item.price) || 0).toFixed(2)}
                       </span>
                       <p className="flex items-center justify-center text-sm text-gray-200 italic mb-4 max-w-md line-clamp-2">
                         <FaLeaf className="mr-2 text-green-400 flex-shrink-0" />
                         {item.description}
                       </p>
-                      {/* You can change this to scroll down or link to a specific product detail page later */}
                       <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all shadow-lg">
                         Shop Now
                       </button>
@@ -106,52 +105,55 @@ const Adverts = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <div
-                key={product.productId}
-                className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                {/* Background Image - Cloudinary URL */}
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="absolute inset-0 w-full h-full object-cover bg-white"
-                  loading="lazy"
-                  onError={(e) => { e.target.src = "https://via.placeholder.com/400x300?text=No+Image" }}
-                />
+            {products.map((product, index) => {
+              const safePrice = parseFloat(product.price) || 0;
+              const safeId = product._id || product.productId || index;
+              return (
+                <div
+                  key={safeId}
+                  className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  {/* Background Image - Cloudinary URL */}
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="absolute inset-0 w-full h-full object-cover bg-white"
+                    loading="lazy"
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x300?text=No+Image" }}
+                  />
 
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/50 hover:bg-black/40 transition-colors" />
+                  {/* Dark Overlay */}
+                  <div className="absolute inset-0 bg-black/50 hover:bg-black/40 transition-colors" />
 
-                {/* Text Overlay */}
-                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white space-y-1 text-center p-4">
-                  <span className="bg-gray-800/80 backdrop-blur-sm text-xs px-3 py-1 rounded-full inline-block border border-gray-600">
-                    {product.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-shadow">{product.title}</h3>
-                  <p className="text-sm line-clamp-2 px-2 text-gray-200">{product.description}</p>
-                  
-                  <p className="text-lg font-bold text-green-400 mt-1 drop-shadow-md">
-                    ₵{product.price.toFixed(2)}
-                  </p>
-                  
-                  <Link
-                    to="/cart"
-                    onClick={() => {
-                      const productToAdd = {
-                        ...product,
-                        // Price is already a number from the backend, so we pass it straight through
-                        price: product.price, 
-                      };
-                      addToCart(productToAdd);
-                    }}
-                    className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors"
-                  >
-                    Add to Cart
-                  </Link>
+                  {/* Text Overlay */}
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white space-y-1 text-center p-4">
+                    <span className="bg-gray-800/80 backdrop-blur-sm text-xs px-3 py-1 rounded-full inline-block border border-gray-600">
+                      {product.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-shadow">{product.title}</h3>
+                    <p className="text-sm line-clamp-2 px-2 text-gray-200">{product.description}</p>
+                    
+                    <p className="text-lg font-bold text-green-400 mt-1 drop-shadow-md">
+                      ₵{safePrice.toFixed(2)}
+                    </p>
+                    
+                    <button
+                      onClick={() => {
+                        const productToAdd = {
+                          ...product,
+                          price: safePrice, 
+                        };
+                        addToCart(productToAdd);
+                        toast.success(`${product.title} added to cart!`);
+                      }}
+                      className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -160,6 +162,5 @@ const Adverts = () => {
 };
 
 export default Adverts;
-
 
 
