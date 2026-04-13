@@ -9,6 +9,7 @@ import Contact from "./pages/user/Contact";
 import Farmers from "./pages/user/Farmers";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Overview from "./pages/dashboard/Overview";
+import Profile from "./pages/dashboard/Profile";
 import CreateAd from "./pages/dashboard/CreateAd";
 import EditAd from "./pages/dashboard/EditAd";
 import FarmerAds from "./pages/dashboard/FarmerAds";
@@ -61,6 +62,7 @@ function App() {
           <Route path="create-ad" element={<CreateAd />} />
           <Route path="edit-ad/:id" element={<EditAd />} />
           <Route path="ads" element={<FarmerAds />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
         <Route path="/superdashboard" element={<SuperDashboardLayout />}>
