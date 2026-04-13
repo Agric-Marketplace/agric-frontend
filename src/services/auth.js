@@ -10,6 +10,7 @@ export const apiSignup = async (payload) => {
 
 export const apiLogin = async (payload) =>
   apiClient.post("/users/login", payload, {
+    withCredentials: true,
     headers: {
       "Content-Type": "application/json",
     },
