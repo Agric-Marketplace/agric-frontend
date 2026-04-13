@@ -6,10 +6,12 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { apiLogin } from "../../services/auth";
 import { toast } from "react-toastify";
+import { useAuth } from "../../context/AuthContext"; 
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { loginAction } = useAuth(); 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -20,8 +22,7 @@ const Login = () => {
     try {
       const response = await apiLogin(formData);
       const user = response.data.user; // FIX: access nested user object
-      localStorage.setItem("token", response.data.accessToken);
-      localStorage.setItem("user", JSON.stringify(user));
+      loginAction(user, response.data.accessToken);
 
       toast.success("Login successful!");
 

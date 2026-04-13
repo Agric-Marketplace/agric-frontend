@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router"; 
 import { Menu, X } from "lucide-react";
 import { toast } from "react-toastify";
 import { apiLogout } from "../../services/auth"; 
+import { useAuth } from "../../context/AuthContext"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState(null); 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { user, logoutAction } = useAuth();
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -30,10 +32,7 @@ const Navbar = () => {
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
-      // Wipe frontend storage regardless of backend success
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setUser(null);
+      logoutAction(); 
       toast.success("Successfully logged out!");
       navigate("/login"); 
     }
