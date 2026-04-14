@@ -13,17 +13,6 @@ const Navbar = () => {
   const { user, logoutAction } = useAuth();
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-
- 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    } else {
-      setUser(null);
-    }
-  }, [location.pathname]);
-
   
   const handleLogout = async () => {
     try {
