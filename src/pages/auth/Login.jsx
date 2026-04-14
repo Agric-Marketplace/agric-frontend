@@ -18,9 +18,11 @@ const Login = () => {
     setLoading(true);
 
     const formData = new FormData(event.target);
+    const jsonPayload = Object.fromEntries(formData.entries());
 
+    
     try {
-      const response = await apiLogin(formData);
+      const response = await apiLogin(jsonPayload);
       const user = response.data.user; // FIX: access nested user object
       loginAction(user, response.data.accessToken);
 
