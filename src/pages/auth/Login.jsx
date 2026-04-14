@@ -1,8 +1,7 @@
 import React from "react";
 import rain from "../../assets/images/formbg.mp4";
-import { Link } from "react-router";
 import formthumb from "../../assets/images/formthumb.png";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { apiLogin } from "../../services/auth";
 import { toast } from "react-toastify";
