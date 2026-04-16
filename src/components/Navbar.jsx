@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom"; 
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react"; 
 import { toast } from "react-toastify";
 import { apiLogout } from "../services/auth"; 
-import { useAuth } from "../context/AuthContext"; 
+import { useAuth } from "../../context/AuthContext"; 
+import { useCart } from "../../context/CartContext"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,21 +12,19 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { user, logoutAction } = useAuth();
+  const { cart } = useCart(); 
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
-  
-  const handleLogout = async () => {
-    try {
-      // Tell the backend to destroy the session/cookie
-      await apiLogout(); 
-    } catch (error) {
-      console.error("Logout error:", error);
-    } finally {
-      logoutAction(); 
-      toast.success("Successfully logged out!");
-      navigate("/login"); 
-    }
+
+const handleLogout = () => {
+    logoutAction(); 
+    navigate("/");
+    toast.success("Successfully logged out!");
+    apiLogout().catch((error) => {
+      console.error("Backend session cleanup failed, but frontend is logged out:", error);
+    });
   };
+
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -64,19 +63,39 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Auth Buttons (Desktop) */}
-        <div className="hidden md:flex items-center gap-x-4">
+        {/* Auth & Actions (Desktop) */}
+        <div className="hidden md:flex items-center gap-x-6">
           {user ? (
-            
             <>
-              {/* Dynamic Dashboard Link based on role */}
+              {/* 1. Profile Link */}
               <Link 
-                to={user.role === "vendor" ? "/dashboard" : "/buyer-dashboard"} 
-                title="Go to Dashboard"
-                className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-bold uppercase shadow-md hover:bg-green-600 transition"
+                to={user.role === "vendor" ? "/dashboard/profile" : "/buyer-dashboard"} 
+                title="My Profile"
+                className="flex items-center gap-2 hover:opacity-80 transition"
               >
-                {user.fullName ? user.fullName.charAt(0) : "U"}
+                <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white text-xl font-bold uppercase shadow-md">
+                  {user.fullName ? user.fullName.charAt(0) : "U"}
+                </div>
+                <span className="font-semibold text-gray-700 hidden lg:block">
+                  {user.fullName?.split(" ")[0]}
+                </span>
               </Link>
+
+              {/* 2. Cart Icon with Notification Bubble */}
+              <Link 
+                to="/cart" 
+                className="relative text-gray-600 hover:text-green-500 transition"
+                title="Go to Cart"
+              >
+                <ShoppingCart size={28} />
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm">
+                    {cart.length}
+                  </span>
+                )}
+              </Link>
+
+              {/* 3. Logout Button */}
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 text-red-500 hover:bg-red-50 border border-red-500 rounded-lg font-semibold transition"
@@ -85,7 +104,6 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            /* ❌ SHOW THIS IF LOGGED OUT */
             <>
               <Link
                 to="/signup"
@@ -138,19 +156,34 @@ const Navbar = () => {
                  </div>
                  <span>Hi, {user.fullName?.split(" ")[0]}</span>
                </div>
+               
                <Link
-                 to={user.role === "vendor" ? "/dashboard" : "/buyer-dashboard"}
-                 className="text-green-600 font-semibold"
+                 to={user.role === "vendor" ? "/dashboard/profile" : "/buyer-dashboard"}
+                 className="text-gray-700 hover:text-green-600 font-semibold text-lg"
                  onClick={toggleMenu}
                >
-                 My Dashboard
+                 Profile
                </Link>
+
+               <Link
+                 to="/cart"
+                 className="text-gray-700 hover:text-green-600 font-semibold text-lg flex items-center gap-2"
+                 onClick={toggleMenu}
+               >
+                 Cart 
+                 {cart.length > 0 && (
+                   <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                     {cart.length}
+                   </span>
+                 )}
+               </Link>
+
                <button
                  onClick={() => {
                    handleLogout();
                    toggleMenu();
                  }}
-                 className="text-red-500 font-semibold"
+                 className="text-red-500 font-semibold text-lg mt-2"
                >
                  Logout
                </button>
@@ -159,14 +192,14 @@ const Navbar = () => {
              <>
                 <Link
                   to="/signup"
-                  className="text-green-600 font-semibold"
+                  className="text-green-600 font-semibold text-lg"
                   onClick={toggleMenu}
                 >
                   Sign Up
                 </Link>
                 <Link
                   to="/login"
-                  className="text-green-600 font-semibold"
+                  className="text-green-600 font-semibold text-lg"
                   onClick={toggleMenu}
                 >
                   Login
