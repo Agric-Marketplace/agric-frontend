@@ -7,11 +7,20 @@ export const AuthProvider = ({ children }) => {
 
   // Check storage when the app first loads
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    try {
+      const storedUser = localStorage.getItem("user");
+      
+      if (storedUser && storedUser !== "undefined" && storedUser !== "null") {
+        setUser(JSON.parse(storedUser));
+      } else {
+        localStorage.removeItem("user"); 
+      }
+    } catch (error) {
+      console.error("Found corrupted storage. Cleaning it up...");
+      localStorage.removeItem("user");
     }
   }, []);
+
 
   // Use this function when someone logs in
   const loginAction = (userData, token) => {
