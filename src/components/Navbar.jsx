@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom"; 
 import { Menu, X } from "lucide-react";
 import { toast } from "react-toastify";
-import { apiLogout } from "../../services/auth"; 
+import { apiLogout } from "../services/auth"; 
 import { useAuth } from "../../context/AuthContext"; 
 
 const Navbar = () => {
