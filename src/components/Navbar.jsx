@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingCart } from "lucide-react"; 
 import { toast } from "react-toastify";
 import { apiLogout } from "../services/auth"; 
-import { useAuth } from "../../context/AuthContext"; 
-import { useCart } from "../../context/CartContext"; 
+import { useAuth } from "../context/AuthContext"; 
+import { useCart } from "../context/CartContext"; 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
