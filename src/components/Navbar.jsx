@@ -16,22 +16,31 @@ const Navbar = () => {
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-const handleLogout = () => {
+  const handleLogout = () => {
+   
     logoutAction(); 
+
+   
     navigate("/");
     toast.success("Successfully logged out!");
+
+    
     apiLogout().catch((error) => {
-      console.error("Backend session cleanup failed, but frontend is logged out:", error);
+      console.error("Backend session cleanup failed:", error);
     });
   };
 
-
-  const navLinks = [
+  const allNavLinks = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/adverts" },
     { name: "Farmers", path: "/farmers" },
     { name: "Contact", path: "/contact" },
   ];
+
+  
+  const visibleLinks = user 
+    ? allNavLinks.filter((link) => link.name !== "Home") 
+    : allNavLinks;
 
   const isActive = (path) => location.pathname === path;
 
@@ -50,7 +59,7 @@ const handleLogout = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-x-10">
-          {navLinks.map((link) => (
+          {visibleLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
@@ -67,7 +76,7 @@ const handleLogout = () => {
         <div className="hidden md:flex items-center gap-x-6">
           {user ? (
             <>
-              {/* 1. Profile Link */}
+              {/* Profile Link */}
               <Link 
                 to={user.role === "vendor" ? "/dashboard/profile" : "/buyer-dashboard"} 
                 title="My Profile"
@@ -81,21 +90,21 @@ const handleLogout = () => {
                 </span>
               </Link>
 
-              {/* 2. Cart Icon with Notification Bubble */}
+              {/* Cart Icon with Notification Bubble */}
               <Link 
                 to="/cart" 
                 className="relative text-gray-600 hover:text-green-500 transition"
                 title="Go to Cart"
               >
                 <ShoppingCart size={28} />
-                {cart.length > 0 && (
+                {cart?.length > 0 && (
                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm">
                     {cart.length}
                   </span>
                 )}
               </Link>
 
-              {/* 3. Logout Button */}
+              {/* Logout Button */}
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 text-red-500 hover:bg-red-50 border border-red-500 rounded-lg font-semibold transition"
@@ -130,7 +139,7 @@ const handleLogout = () => {
       {/* Mobile Navigation */}
       {menuOpen && (
         <div className="md:hidden mt-4 rounded-lg bg-white py-6 shadow-md flex flex-col gap-4 items-center">
-          {navLinks.map((link) => (
+          {visibleLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
@@ -171,7 +180,7 @@ const handleLogout = () => {
                  onClick={toggleMenu}
                >
                  Cart 
-                 {cart.length > 0 && (
+                 {cart?.length > 0 && (
                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
                      {cart.length}
                    </span>
