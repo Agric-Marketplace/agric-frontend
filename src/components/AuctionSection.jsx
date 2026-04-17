@@ -3,8 +3,12 @@ import { Link } from "react-router";
 import banana from "../assets/images/banana.jpg";
 import tomatoes from "../assets/images/tomatoes.png";
 import lettuce from "../assets/images/lettuce.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; 
 
 const AuctionSection = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [bidAmount, setBidAmount] = useState("");
   const [activeTab, setActiveTab] = useState("all");
 
@@ -51,17 +55,13 @@ const AuctionSection = () => {
   };
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat("en-GH", {
-      style: "currency",
-      currency: "GHS",
-      minimumFractionDigits: 0,
-    }).format(amount);
+     return `₵${amount.toLocaleString("en-US", { minimumFractionDigits: 0 })}`;
   };
 
-  const handleBid = (e, itemId) => {
+  const handleBid = (e) => {
     e.preventDefault();
-    alert(`Bid of ${formatCurrency(bidAmount)} placed on item #${itemId}`);
-    setBidAmount("");
+    e.stopPropagation();
+    navigate("/login");
   };
 
   return (
@@ -109,7 +109,7 @@ const AuctionSection = () => {
           {activeTab === "all" && (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {auctionItems.map((item) => (
-                <Link to="/auctionpage" key={item.id}>
+                <Link to={user ? "/auctionpage" : "/login"} key={item.id}>
                   <div className="border rounded-lg p-4 hover:shadow-md bg-white cursor-pointer">
                     <img
                       src={item.image}
