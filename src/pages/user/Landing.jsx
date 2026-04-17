@@ -19,8 +19,9 @@ import commodity from "../../assets/images/commodity.png";
 import agriculture from "../../assets/images/agriculture.png";
 import planting from "../../assets/images/planting.png";
 import { ChevronDown } from "lucide-react";
-
+import { useAuth } from "../../context/AuthContext";
 const Landing = () => {
+  const { user } = useAuth();
   return (
     <div>
       {/* Hero Section */}
@@ -80,8 +81,7 @@ const Landing = () => {
               </Link>
 
               {/* Browse Produce */}
-              <Link
-                to="/adverts"
+              <Link to={user ? "/adverts" : "/login"}
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-400 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
               >
                 <span className="...">
@@ -95,8 +95,7 @@ const Landing = () => {
               </Link>
 
               {/* View Auctions */}
-              <Link
-                to="/auctionpage"
+              <Link to={user ? "/auctionpage" : "/login"} 
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg border border-green-600 bg-transparent backdrop-blur-md rounded-xl font-semibold text-white hover:bg-green-500 hover:text-white shadow-md hover:shadow-green-400/50 transition-all duration-300 flex items-center gap-3 group transform hover:scale-105"
               >
                 <span className="...">
@@ -141,7 +140,7 @@ const Landing = () => {
               { img: p4, label: "Dairy & Egg" },
               { img: p5, label: "Herbal Products" },
             ].map((item, index) => (
-              <Link to="/adverts" key={index}>
+              <Link to={user ? "/adverts" : "/login"} key={index}>
                 <div className="relative rounded-lg overflow-hidden group ">
                   <img
                     src={item.img}
