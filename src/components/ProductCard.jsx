@@ -1,8 +1,9 @@
 import React from "react";
 import plantain from "../assets/images/plantain.png";
 import { Link } from "react-router";
-
+import { useAuth } from "../context/AuthContext";
 const ProductCard = ({ image, title, description, price }) => {
+  const { user } = useAuth();
   return (
     <div className="relative w-80 h-[460px] rounded-3xl overflow-hidden shadow-md bg-white ">
       {/* Background Image */}
@@ -34,14 +35,12 @@ z-index: 0;"
           <p className="mt-1 font-bold"> ₵{price}</p>
 
           <div className="flex gap-2 mt-4">
-            <Link
-              to="/adverts"
+            <Link to={user ? "/adverts" : "/login"}
               className="flex-1 bg-white text-black text-center font-medium py-2 rounded-xl hover:bg-gray-200 transition"
             >
               Buy
             </Link>
-            <Link
-              to="/adverts"
+            <Link to={user ? "/adverts" : "/login"}
               className="flex-1 border border-white text-white text-center font-medium py-2 rounded-xl hover:bg-white hover:text-black transition"
             >
               View More
