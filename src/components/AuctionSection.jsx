@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext"; 
 import banana from "../assets/images/banana.jpg";
 import tomatoes from "../assets/images/tomatoes.png";
 import lettuce from "../assets/images/lettuce.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; 
 
 const AuctionSection = () => {
   const { user } = useAuth();
@@ -55,7 +54,7 @@ const AuctionSection = () => {
   };
 
   const formatCurrency = (amount) => {
-     return `₵${amount.toLocaleString("en-US", { minimumFractionDigits: 0 })}`;
+    return `₵${amount.toLocaleString("en-US", { minimumFractionDigits: 0 })}`;
   };
 
   const handleBid = (e) => {
@@ -109,8 +108,11 @@ const AuctionSection = () => {
           {activeTab === "all" && (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {auctionItems.map((item) => (
-                <Link to={user ? "/auctionpage" : "/login"} key={item.id}>
-                  <div className="border rounded-lg p-4 hover:shadow-md bg-white cursor-pointer">
+                /* 🟢 FIXED: The div is now the wrapper with the key */
+                <div key={item.id} className="border rounded-lg p-4 hover:shadow-md bg-white">
+                  
+                  {/* 🟢 FIXED: The Link only wraps the display content */}
+                  <Link to={user ? "/auctionpage" : "/login"} className="block cursor-pointer">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -127,28 +129,30 @@ const AuctionSection = () => {
                     <p className="text-gray-800 font-semibold">
                       {formatCurrency(item.currentBid)}
                     </p>
-                    <form
-                      onSubmit={(e) => handleBid(e, item.id)}
-                      className="flex gap-2 mt-3"
+                  </Link>
+                  {/* 🟢 FIXED: Link ends here, so the form below is NOT nested */}
+
+                  <form
+                    onSubmit={(e) => handleBid(e)}
+                    className="flex gap-2 mt-3"
+                  >
+                    <input
+                      type="number"
+                      placeholder={`Min: ${formatCurrency(item.minBid)}`}
+                      value={bidAmount}
+                      onChange={(e) => setBidAmount(e.target.value)}
+                      className="flex-1 px-3 py-2 border rounded-md"
+                      min={item.minBid}
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
                     >
-                      <input
-                        type="number"
-                        placeholder={`Min: ${formatCurrency(item.minBid)}`}
-                        value={bidAmount}
-                        onChange={(e) => setBidAmount(e.target.value)}
-                        className="flex-1 px-3 py-2 border rounded-md"
-                        min={item.minBid}
-                        required
-                      />
-                      <button
-                        type="submit"
-                        className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
-                      >
-                        Place Bid
-                      </button>
-                    </form>
-                  </div>
-                </Link>
+                      Place Bid
+                    </button>
+                  </form>
+                </div>
               ))}
             </div>
           )}
@@ -172,7 +176,7 @@ const AuctionSection = () => {
             Don't miss out on these exclusive items. New auctions are added
             every week.
           </p>
-          <Link to="/auctionpage">
+          <Link to={user ? "/auctionpage" : "/login"}>
             <button className="px-8 py-3 bg-emerald-600 text-white font-medium rounded-md hover:bg-emerald-700">
               View All Auctions
             </button>
