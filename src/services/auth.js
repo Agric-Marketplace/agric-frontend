@@ -32,3 +32,12 @@ export const apiLogout = async () => {
     withCredentials: true 
   });
 };
+
+export const apiForgotPassword = async (payload) => {
+  return apiClient.post("/users/forgot-password", payload, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
+

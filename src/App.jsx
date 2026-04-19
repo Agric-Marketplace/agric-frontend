@@ -52,6 +52,7 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
         <Route path="/superlogin" element={<SuperAdminLoginPage />} />
