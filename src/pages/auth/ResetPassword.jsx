@@ -104,7 +104,7 @@ const ResetPassword = () => {
                 placeholder="Enter new password"
                 required
                 minLength="6"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none text-black"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
               />
             </div>
 
@@ -122,7 +122,7 @@ const ResetPassword = () => {
                 placeholder="Confirm your new password"
                 required
                 minLength="6"
-                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none text-black"
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:outline-none"
               />
             </div>
 
