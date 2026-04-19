@@ -41,3 +41,12 @@ export const apiForgotPassword = async (payload) => {
   });
 };
 
+export const apiResetPassword = async (newPassword, token) => {
+  return apiClient.post(`/users/reset-password?token=${token}`, {
+    newPassword: newPassword,
+  }, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};

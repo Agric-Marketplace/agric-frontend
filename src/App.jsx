@@ -31,7 +31,8 @@ import ConfirmPage from "./pages/user/ConfirmPage";
 import ReviewPage from "./pages/user/ReviewPage";
 import SuperAdminLoginPage from "./pages/auth/SuperAdminLoginPage";
 import SelectLoginFarmAssist from "./pages/auth/SelectLoginFarmAssist";
-
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 function App() {
   return (
     <BrowserRouter>
@@ -53,6 +54,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
         <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
         <Route path="/superlogin" element={<SuperAdminLoginPage />} />
