@@ -8,7 +8,7 @@ import lettuce from "../assets/images/lettuce.png";
 const AuctionSection = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [bidAmount, setBidAmount] = useState("");
+  const [bidAmounts, setBidAmounts] = useState({});
   const [activeTab, setActiveTab] = useState("all");
 
   const auctionItems = [
@@ -56,6 +56,14 @@ const AuctionSection = () => {
   const formatCurrency = (amount) => {
     return `₵${amount.toLocaleString("en-US", { minimumFractionDigits: 0 })}`;
   };
+
+  const handleBidChange = (id, value) => {
+  setBidAmounts((prev) => ({
+    ...prev,
+    [id]: value,
+  }));
+};
+
 
   const handleBid = (e) => {
     e.preventDefault();
@@ -137,14 +145,17 @@ const AuctionSection = () => {
                     className="flex gap-2 mt-3"
                   >
                     <input
-                      type="number"
-                      placeholder={`Min: ${formatCurrency(item.minBid)}`}
-                      value={bidAmount}
-                      onChange={(e) => setBidAmount(e.target.value)}
-                      className="flex-1 px-3 py-2 border rounded-md"
-                      min={item.minBid}
-                      required
+                    type="number"
+                    value={bidAmounts[item.id] || ""} 
+  
+                    onChange={(e) => handleBidChange(item.id, e.target.value)} 
+  
+                    placeholder={`Min: ${formatCurrency(item.minBid)}`}
+                    className="flex-1 px-3 py-2 border rounded-md"
+                    min={item.minBid}
+                    required
                     />
+
                     <button
                       type="submit"
                       className="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700"
