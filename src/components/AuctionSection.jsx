@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext"; 
+import { useAuth } from "../context/AuthContext"; 
 import banana from "../assets/images/banana.jpg";
 import tomatoes from "../assets/images/tomatoes.png";
 import lettuce from "../assets/images/lettuce.png";
