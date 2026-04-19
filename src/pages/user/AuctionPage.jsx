@@ -1,11 +1,17 @@
-// src/pages/AuctionPage.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
+import { useAuth } from "../../context/AuthContext"; 
+import { toast } from "react-toastify"; 
 import banana from "../../assets/images/banana.jpg";
 import tomatoes from "../../assets/images/tomatoes.png";
 import lettuce from "../../assets/images/lettuce.png";
 
 const AuctionPage = () => {
-  const [bidAmount, setBidAmount] = useState("");
+  const { user } = useAuth(); 
+  const navigate = useNavigate(); 
+
+  
+  const [bidAmounts, setBidAmounts] = useState({}); 
   const [activeTab, setActiveTab] = useState("all");
 
   const auctionItems = [
@@ -49,18 +55,35 @@ const AuctionPage = () => {
     return { total, days, hours, minutes };
   };
 
+  
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-    }).format(amount);
+    return `₵${amount.toLocaleString("en-US", { minimumFractionDigits: 0 })}`;
   };
 
-  const handleBid = (e, itemId) => {
+  
+  const handleBidChange = (id, value) => {
+    setBidAmounts((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  
+  const handleBid = (e, itemId, itemName) => {
     e.preventDefault();
-    alert(`Bid of ${bidAmount} placed on item #${itemId}`);
-    setBidAmount("");
+    
+    
+    if (!user) {
+      toast.info("Please log in to place a bid.");
+      navigate("/login");
+      return; 
+    }
+
+    const bidValue = bidAmounts[itemId];
+
+    // If they are logged in, show success and clear that specific input
+    toast.success(`Bid of ₵${bidValue} placed on ${itemName}!`);
+    setBidAmounts((prev) => ({ ...prev, [itemId]: "" }));
   };
 
   return (
@@ -118,15 +141,20 @@ const AuctionPage = () => {
                 <p className="text-gray-800 font-semibold">
                   {formatCurrency(item.currentBid)}
                 </p>
+                
+                {/* 🟢 FIXED: Passing item.name to the submit handler */}
                 <form
-                  onSubmit={(e) => handleBid(e, item.id)}
+                  onSubmit={(e) => handleBid(e, item.id, item.name)}
                   className="flex gap-2 mt-3"
                 >
                   <input
                     type="number"
                     placeholder={`Min: ${formatCurrency(item.minBid)}`}
-                    value={bidAmount}
-                    onChange={(e) => setBidAmount(e.target.value)}
+                    
+                    // 🟢 FIXED: Read and write to the specific ID
+                    value={bidAmounts[item.id] || ""}
+                    onChange={(e) => handleBidChange(item.id, e.target.value)}
+                    
                     className="flex-1 px-3 py-2 border rounded-md"
                     min={item.minBid}
                     required
