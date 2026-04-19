@@ -19,15 +19,12 @@ const Login = () => {
     const formData = new FormData(event.target);
     const jsonPayload = Object.fromEntries(formData.entries());
 
-    
     try {
       const response = await apiLogin(jsonPayload);
-      const user = response.data.user; // FIX: access nested user object
+      const user = response.data.user; 
       loginAction(user, response.data.accessToken);
 
       toast.success("Login successful!");
-
-      console.log("User role:", user.role); // Confirm it's "vendor"
 
       if (user.role === "vendor") {
         navigate("/dashboard");
@@ -35,12 +32,18 @@ const Login = () => {
         navigate("/adverts");
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Login failed. Please check your credentials and try again.");
+      console.log("Login Error Details:", error);
+    
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message); 
+      } else {
+        toast.error("Login failed. Please check your connection and try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
