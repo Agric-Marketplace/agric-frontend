@@ -5,12 +5,15 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { FaLeaf } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { apiGetAllAdverts } from "../../services/products";
 import { toast } from "react-toastify";
 
 const Adverts = () => {
   const { addToCart } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [heroSlides, setHeroSlides] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -139,6 +142,10 @@ const Adverts = () => {
                     
                     <button
                       onClick={() => {
+                        if (!user){
+                          navigate("/login");
+                          return;
+                        }
                         const productToAdd = {
                           ...product,
                           price: safePrice, 

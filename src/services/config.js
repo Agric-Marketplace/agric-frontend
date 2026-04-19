@@ -10,12 +10,18 @@ apiClient.interceptors.request.use((config) => {
   //Get access token from localStorage
   const token = localStorage.getItem("token");
   //Attach token to Authorization header
+  if (token && token !== "null" && token !== "undefined"){
   config.headers.Authorization = `Bearer ${token}`;
+  }
   console.log("Outgoing request config:", config);
 
   //Return config
   return config;
-});
+},
+(error) => {
+    return Promise.reject(error);
+  }
+);
 
 // ATTACHES THE LOCAL STORAGE TOKEN
 apiClient.interceptors.request.use(
