@@ -157,10 +157,7 @@ const Signup = () => {
                 <option value="vendor" className="text-black">
                   Vendor
                 </option>
-                <option value="superadmin" className="text-black">
-                  Superadmin
-                </option>
-              </select>
+                </select>
             </div>
 
             <div>
