@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { FaLeaf } from "react-icons/fa";
 import { useCart } from "../../context/CartContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; 
 import { useAuth } from "../../context/AuthContext";
 import { apiGetAllAdverts } from "../../services/products";
 import { toast } from "react-toastify";
@@ -18,16 +18,14 @@ const Adverts = () => {
   const [heroSlides, setHeroSlides] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all live products from the backend
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await apiGetAllAdverts();
-        // Based on your backend controller, data is inside response.products
         const liveProducts = response.products || [];
         
         setProducts(liveProducts);
-        // Automatically feature the 3 newest/top products in the hero slider
         setHeroSlides(liveProducts.slice(0, 3));
       } catch (error) {
         console.error("Error fetching adverts:", error);
@@ -50,7 +48,7 @@ const Adverts = () => {
 
   return (
     <section className="min-h-screen bg-gray-100">
-      {/* ===== Hero Section ===== */}
+      
       {heroSlides.length > 0 && (
         <div className="pt-28">
           <Swiper
@@ -67,12 +65,12 @@ const Adverts = () => {
                   <div
                     className="relative h-full w-full bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${item.image})`, // ✅ Cloudinary URL
+                      backgroundImage: `url(${item.image})`,
                     }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
 
-                    {/* Text Overlay */}
+                   
                     <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4 text-center text-white">
                       <span className="bg-green-700 text-white text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2">
                         Featured {item.category}
@@ -87,7 +85,12 @@ const Adverts = () => {
                         <FaLeaf className="mr-2 text-green-400 flex-shrink-0" />
                         {item.description}
                       </p>
-                      <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all shadow-lg">
+                      
+                      
+                      <button 
+                        onClick={() => navigate(`/product/${item._id || item.productId}`)}
+                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded transition-all shadow-lg z-20 cursor-pointer"
+                      >
                         Shop Now
                       </button>
                     </div>
@@ -112,11 +115,13 @@ const Adverts = () => {
               const safePrice = parseFloat(product.price) || 0;
               const safeId = product._id || product.productId || index;
               return (
-                <div
+                
+                <Link
+                  to={`/product/${safeId}`}
                   key={safeId}
-                  className="relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="block relative rounded-2xl overflow-hidden h-[280px] shadow-lg transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer"
                 >
-                  {/* Background Image - Cloudinary URL */}
+                  
                   <img
                     src={product.image}
                     alt={product.title}
@@ -141,7 +146,11 @@ const Adverts = () => {
                     </p>
                     
                     <button
-                      onClick={() => {
+                      onClick={(e) => {
+                        
+                        e.preventDefault(); 
+                        e.stopPropagation();
+
                         if (!user){
                           navigate("/login");
                           return;
@@ -152,12 +161,12 @@ const Adverts = () => {
                         };
                         addToCart(productToAdd);
                       }}
-                      className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors"
+                      className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors cursor-pointer"
                     >
                       Add to Cart
                     </button>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -168,5 +177,3 @@ const Adverts = () => {
 };
 
 export default Adverts;
-
-

@@ -51,3 +51,7 @@ export const apiUpdateAdvertImage = async (id, formData) => {
     withCredentials: true,
   });
 };
+
+export const apiGetProductById = async (id) => {
+  return apiClient.get(`/products/${id}`);
+};

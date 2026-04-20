@@ -43,6 +43,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="farmers" element={<Farmers />} />
           <Route path="product" element={<ProductDetail />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="paymentpage" element={<PaymentPage />} />
           <Route path="auctionpage" element={<AuctionPage />} />
