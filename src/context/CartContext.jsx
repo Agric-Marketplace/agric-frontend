@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = async (product, quantity = 1) => {
     try {
-      const productId = product.productId; 
+      const productId = product._id || product.id || product.productId; 
       
       if (!productId) {
         toast.error("Cannot add item: Product ID is missing.");

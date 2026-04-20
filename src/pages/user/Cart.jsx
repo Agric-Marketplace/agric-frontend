@@ -3,11 +3,9 @@ import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom"; 
 
 const Cart = () => {
-
   const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
   const navigate = useNavigate();
 
-  
   const displayTotal = cartTotal || cart.reduce((total, item) => {
     return total + (parseFloat(item.price) || 0) * (parseInt(item.quantity, 10) || 1);
   }, 0);
@@ -36,17 +34,20 @@ const Cart = () => {
         <div className="space-y-6">
           {cart.map((item, index) => {
             
+            
             const productInfo = item.product || {};
-            const productId = productInfo._id; 
-            const title = productInfo.title || "Unnamed Produce";
+            const productId = productInfo._id || item.product || item.Product; 
+            const title = productInfo.title || "⚠️ Product Unavailable";
             const image = productInfo.image; 
             const maxStock = productInfo.quantity || 99; 
             
             const itemPrice = parseFloat(item.price) || 0;
             const itemQuantity = parseInt(item.quantity, 10) || 1;
 
-            
-            if (!productId) return null;
+            if (!productId) {
+              console.error("FATAL: Item completely missing ID:", item);
+              return null;
+            }
 
             return (
               <div
@@ -65,7 +66,7 @@ const Cart = () => {
 
                 {/* Info Setup */}
                 <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-green-700 truncate">
+                  <h2 className={`text-xl font-semibold truncate ${!productInfo.title ? "text-red-500" : "text-green-700"}`}>
                     {title}
                   </h2>
                   
@@ -75,7 +76,7 @@ const Cart = () => {
                         ₵{itemPrice.toFixed(2)}
                       </p>
                       
-                      
+                      {/* Quantity Selector */}
                       <div className="flex items-center border border-gray-300 rounded-md overflow-hidden bg-gray-50">
                         <button
                           onClick={() => {
@@ -105,8 +106,8 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-
                 
+                {/* Remove Button Area */}
                 <div className="flex flex-col items-end justify-between h-full gap-4">
                   <p className="font-bold text-green-800 text-lg">
                     ₵{(itemPrice * itemQuantity).toFixed(2)}
@@ -150,3 +151,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
