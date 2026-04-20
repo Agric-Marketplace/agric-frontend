@@ -151,7 +151,6 @@ const Adverts = () => {
                           price: safePrice, 
                         };
                         addToCart(productToAdd);
-                        toast.success(`${product.title} added to cart!`);
                       }}
                       className="mt-3 bg-white text-green-700 font-bold px-6 py-2 rounded-full shadow-lg hover:bg-green-50 transition-colors"
                     >
