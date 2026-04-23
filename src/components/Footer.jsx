@@ -127,7 +127,7 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-green-800 mt-12 pt-6 text-sm flex flex-col md:flex-row justify-between items-center max-w-screen-xl mx-auto text-green-200">
-        <p>&copy; 2025 FarmAssist. All rights reserved.</p>
+        <p>&copy; 2026 FarmAssist. All rights reserved.</p>
         <div className="flex gap-4 mt-2 md:mt-0">
           <a href="#" className="hover:underline">
             Privacy Policy
